@@ -35,7 +35,7 @@ export const TableSection = () => {
                         className="flex flex-row gap-2"
                       >
                         <Image
-                          src="/assets/About us Page/Icons/SVG Icon/Check.svg"
+                          src="/assets/About us Page/Icons/Check.svg"
                           width={12}
                           height={12}
                           alt="check"
