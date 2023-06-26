@@ -6,9 +6,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body className="min-h-screen">
+    <section className="min-h-screen">
       <Header />
       {children}
-    </body>
+    </section>
   );
 }

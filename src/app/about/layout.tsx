@@ -7,10 +7,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <body className="min-h-screen">
+    <section className="min-h-screen">
       <Header />
       {children}
       <DownloadESIM />
-    </body>
+    </section>
   );
 }

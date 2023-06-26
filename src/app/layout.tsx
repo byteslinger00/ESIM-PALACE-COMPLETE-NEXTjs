@@ -1,7 +1,5 @@
 'use client'
 import "./globals.css";
-import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { Footer } from "@/components/elements/common/Footer";
 
 type LayoutProps = {
@@ -12,6 +10,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <html lang="en">
+      <head>
+        
+      </head>
       <body className="min-h-screen">
         {children}
         <Footer />
