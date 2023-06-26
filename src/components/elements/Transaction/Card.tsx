@@ -27,7 +27,7 @@ export const Card: React.FC<props> = ({ src, title, size, price, subtotal, disco
                 <div className='grow flex flex-row gap-6'>
                     <p className=''>Discount</p>
                     <div className='flex flex-row gap-1'>
-                        <Image src="/assets/Transaction Page/Icons/SVG Icon/Hot sale.svg" width={16} height={16} alt="Hot Sale" />
+                        <Image src="/assets/Transaction Page/Icons/Hot sale.svg" width={16} height={16} alt="Hot Sale" />
                         <p>ESIMTEST2023</p>
                     </div>
 

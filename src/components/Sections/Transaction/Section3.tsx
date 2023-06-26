@@ -13,7 +13,7 @@ export const Section3 = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
                 <div className="flex flex-col gap-[60px]">
                     <div className="flex flex-row gap-4">
-                        <Image src="/assets/Transaction Page/Icons/SVG Icon/Check mark.svg" width={64} height={64} alt="Check Mark" />
+                        <Image src="/assets/Transaction Page/Icons/Check mark.svg" width={64} height={64} alt="Check Mark" />
                         <div className="lg:text-[24px] text-[20px] grid grid-rows-2 font-montserratbold text-left">
                             <p>Order #1090</p>
                             <p>Thanks Helex Mofidex</p>
@@ -24,7 +24,7 @@ export const Section3 = () => {
                         <Button title="QR code" color="#F2B21B" />
                         <Button title="Manual" color="#FFECBE" />
                     </div>
-                    <Image src="/assets/Transaction Page/Icons/SVG Icon/qr-code-svgrepo-com.svg" width={300} height={300} alt="QR Code" className="mx-auto" />
+                    <Image src="/assets/Transaction Page/Icons/qr-code-svgrepo-com.svg" width={300} height={300} alt="QR Code" className="mx-auto" />
                     {/* Integrate With API */}
                     <Roaming />
                     <Reload />
