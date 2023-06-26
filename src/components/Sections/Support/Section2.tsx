@@ -8,7 +8,7 @@ export const Section3 = () => {
         <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[76px] bg-white flex flex-row gap-15 text-dark-solid text-center">
             <div className="flex flex-row lg:gap-[60px] gap-[20px] ">
                 <div className="min-w-[350px] rounded-[14px] bg-[#EBF6FF] px-4 py-[50px] flex flex-col gap-2 max-md:hidden">
-                    <Option src="/assets/Support Page/Icons/SVG Icon/Shopping bag.svg" title="eSim selection and purchase" />
+                    <Option src="/assets/Support Page/Icons/SVG Icon/Shoppingbag.svg" title="eSim selection and purchase" />
                     <Option src="/assets/Support Page/Icons/SVG Icon/Configuration.svg" title="Configuring your eSIM" />
                     <Option src="/assets/Support Page/Icons/SVG Icon/Puzzle.svg" title="Incompatibility" />
                     <Option src="/assets/Support Page/Icons/SVG Icon/Language.svg" title="Defining terms" />
