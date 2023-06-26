@@ -9,7 +9,7 @@ export const Search = () => {
             />
             <button className='my-auto bg-primary-solid xl:w-12 xl:h-12 w-[30px] h-[30px] rounded-lg'>
                 <Image
-                    src="/assets/Homepage/Icons/SVG Icon/Search.svg"
+                    src="/assets/Homepage/Icons/SVG Icon/Search2.svg"
                     width={24}
                     height={24}
                     alt="serach-icon"
