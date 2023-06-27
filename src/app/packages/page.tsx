@@ -1,7 +1,4 @@
-
-import { Footer } from "@/components/elements/common/Footer";
 import { Categories } from "@/components/Sections/Categories";
-import { DownloadESIM } from "@/components/Sections/DownloadESIM";
 import { Section3 } from "@/components/Sections/Packages/Section3";
 import { Section1 } from "@/components/Sections/Section1";
 import { Section2 } from "@/components/Sections/Section2";

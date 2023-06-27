@@ -7,6 +7,7 @@ import { Details } from "@/components/elements/Homepage/Details";
 import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 import { details } from "@/types/details.type";
 import { Spinner } from "@/components/elements/common/Spinner";
+import { toast } from "react-toastify";
 
 export const Section3 = () => {
   const [popularCountries, setCountries] = useState<Array<packages>>();
@@ -19,6 +20,13 @@ export const Section3 = () => {
     (async () => {
       setLoading(true)
       const data = await getCountriesByRegion('Popular');
+      if (data === false) {
+        toast.error("Connection Failed!", {
+            position: toast.POSITION.TOP_RIGHT
+        });
+        setLoading(false);
+        return;
+    }
       setCountries(data)
       setLoading(false);
     })()
@@ -28,6 +36,13 @@ export const Section3 = () => {
     setLoading(true);
     setCountry(country_name)
     const data = await getDetailsByCountry(country_name);
+    if (data === false) {
+      toast.error("Connection Failed", {
+          position: toast.POSITION.TOP_RIGHT
+      });
+      setLoading(false);
+      return;
+  }
     setDetails(data);
     setIndex(Math.floor(index / 5) + 1);
     setLoading(false);

@@ -16,10 +16,10 @@ export default async function getCountriesByRegion(region: string) {
       }
     );
     const response = await res.json();
-    // response.elements.shift();
+    if (region !== "Popular") response.elements.shift();
     return response.elements;
   } catch (error) {
-    console.log('Connection failed');
-    return;
+    console.log("Connection error!");
+    return false;
   }
 }

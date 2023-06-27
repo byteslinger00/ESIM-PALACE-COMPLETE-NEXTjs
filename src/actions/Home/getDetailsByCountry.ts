@@ -16,12 +16,11 @@ export default async function getDetailsByCountry(country_name: string) {
         }
       );
       const response = await res.json();
-      // response.elements.shift();
       console.log(response)
       return response.elements;
     } catch (error) {
       console.log('Connection failed');
-      return;
+      return false;
     }
   }
   
