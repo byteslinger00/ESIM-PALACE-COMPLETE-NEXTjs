@@ -1,3 +1,5 @@
+import { token } from "@/utils/token";
+
 export default async function getCountriesByRegion(region: string) {
   try {
     const res = await fetch(
@@ -6,7 +8,7 @@ export default async function getCountriesByRegion(region: string) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token ae9819d13e176fd276a958e1e3230b3080a73a2c",
+          Authorization: token,
         },
         body: JSON.stringify({
           region,
@@ -15,7 +17,6 @@ export default async function getCountriesByRegion(region: string) {
     );
     const response = await res.json();
     // response.elements.shift();
-    console.log(response.elements)
     return response.elements;
   } catch (error) {
     console.log('Connection failed');

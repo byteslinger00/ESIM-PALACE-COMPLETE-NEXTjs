@@ -4,12 +4,16 @@ import { CountryCard } from "../../elements/Homepage/CountryCard";
 import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
 import { packages } from "@/types/packages.type";
 import { Details } from "@/components/elements/Homepage/Details";
-import HashLoader from "react-spinners/HashLoader";
+import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
+import { details } from "@/types/details.type";
+import { Spinner } from "@/components/elements/common/Spinner";
 
 export const Section3 = () => {
   const [popularCountries, setCountries] = useState<Array<packages>>();
-  const [cardIndex, setIndex] = useState(1);
+  const [selected_cardIndex, setIndex] = useState(1);
+  const [selected_country, setCountry] = useState("")
   const [is_Loading, setLoading] = useState(false);
+  const [details, setDetails] = useState<Array<details>>();
 
   useEffect(() => {
     (async () => {
@@ -20,8 +24,13 @@ export const Section3 = () => {
     })()
   }, [])
 
-  const LoadDetail = (country_name: string, index: number) => {
+  const LoadDetail = async (country_name: string, index: number) => {
+    setLoading(true);
+    setCountry(country_name)
+    const data = await getDetailsByCountry(country_name);
+    setDetails(data);
     setIndex(Math.floor(index / 5) + 1);
+    setLoading(false);
   }
 
   return (
@@ -31,20 +40,16 @@ export const Section3 = () => {
       </div>
       {
         is_Loading ?
-          <div className="absolute top-0 left-0 w-full h-full bg-[#00000010]">
-            <div className="absolute position-center w-[100px] h-[100px]">
-              <HashLoader size={100} color="#36D7B7" />
-            </div>
-          </div>
+          <Spinner />
           : ""
       }
-      <div className="w-full my-16 grid xl:grid-cols-5 grid-cols-2 grid-container">
+      <div className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container">
         {
           popularCountries?.length !== 0 ?
-            popularCountries?.map((item, index) => <CountryCard key={"Popular Country" + index} id={index} country_code={item.country_code} country={item.country_name} onLoad={LoadDetail} />)
+            popularCountries?.map((item, index) => <CountryCard key={"Popular Country" + index} selected_country={selected_country} id={index} country_code={item.country_code} country={item.country_name} onLoad={LoadDetail} />)
             : ""
         }
-        <Details index={cardIndex} />
+        <Details index={selected_cardIndex} data={details}/>
       </div>
 
     </section>

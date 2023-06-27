@@ -98,6 +98,31 @@ p {
   grid-column-end: span 5;
 }
 
+.grid-A1 {
+  grid-area: A1;
+}
+
+.grid-A2 {
+  grid-area: A2;
+}
+
+.grid-A3 {
+  grid-area: A3;
+}
+
+.grid-A4 {
+  grid-area: A4;
+}
+
+.grid-A5 {
+  grid-area: A5;
+}
+
+.grid-A6 {
+  grid-area: A6;
+}
+
+
 @font-face {
   font-family: "Montserrat";
   src: url("../../public/assets/Font/montserrat/static/Montserrat-Regular.ttf");
@@ -116,4 +141,45 @@ p {
 @font-face {
   font-family: "Hellix";
   src: url("../../public/assets/Font/heillix/Hellix-Regular.ttf");
+}
+
+@media screen and (max-width: 1280px) {
+  .grid-container {
+    display: block;
+    grid-template: none;
+  }
+  
+  .grid-item {
+    grid-column-end: span 1;
+  }
+
+  .grid-A1{
+    grid-area: auto;
+    grid-column: span 2;
+  }
+
+  .grid-A2{
+    grid-area: auto;
+    grid-column: span 2;
+  }
+
+  .grid-A3{
+    grid-area: auto;
+    grid-column: span 2;
+  }
+
+  .grid-A4{
+    grid-area: auto;
+    grid-column: span 2;
+  }
+
+  .grid-A5{
+    grid-area: auto;
+    grid-column: span 2;
+  }
+
+  .grid-A6{
+    grid-area: auto;
+    grid-column: span 2;
+  }
 }

@@ -1,21 +1,23 @@
-export default async function getDetailsByCountry(region: string) {
+import { token } from "@/utils/token";
+
+export default async function getDetailsByCountry(country_name: string) {
     try {
       const res = await fetch(
-        "https://test.esimplified.io/customer/esimpalace/api/countries_list/",
+        "https://test.esimplified.io/customer/esimpalace/api/packages_list/",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Token ae9819d13e176fd276a958e1e3230b3080a73a2c",
+            Authorization: token,
           },
           body: JSON.stringify({
-            region,
+            country_name,
           }),
         }
       );
       const response = await res.json();
       // response.elements.shift();
-      console.log(response.elements)
+      console.log(response)
       return response.elements;
     } catch (error) {
       console.log('Connection failed');

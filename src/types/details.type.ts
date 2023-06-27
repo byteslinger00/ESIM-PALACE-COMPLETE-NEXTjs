@@ -1,0 +1,18 @@
+export type details = {
+    activation_policy: string,
+    best_connectivity: string,
+    country_code: string,
+    country_flag: string,
+    country_name: string,
+    currency: string,
+    data_GB: string,
+    kyc_display: string,
+    name: string,
+    name_additional_text: string,
+    network: string[],
+    package_type_id: number,
+    plan_type: string,
+    price: string,
+    supported_countries: string[],
+    validity_days: number,
+}
