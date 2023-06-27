@@ -56,8 +56,6 @@ export const Section3 = () => {
                         <Card key={index}
                             country_code={item.country_code}
                             title={item.country_name}
-                            data={1}
-                            validity={7}
                             showModal={showModal}
                         />)
                 }) : ''}
