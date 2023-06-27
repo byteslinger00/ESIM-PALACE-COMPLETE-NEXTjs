@@ -21,16 +21,16 @@ body {
   background-color: white;
 }
 
-main{
+main {
   top: 0px;
 }
 
-table{
+table {
   width: 100%;
 }
 
-td{
-  border-color: #FAE0A4;
+td {
+  border-color: #fae0a4;
   border-width: 1px;
 }
 
@@ -38,28 +38,28 @@ tr > td:first-child {
   border-left: 0px !important;
 }
 
-tr > td:last-child{
-  border-right: 0px !important
+tr > td:last-child {
+  border-right: 0px !important;
 }
 
 tr:last-child > td {
   border-bottom: 0px !important;
 }
 
-tr > th{
+tr > th {
   padding: 20px 40px;
   line-height: 25px;
   text-align: left;
 }
 
-tr > td{
+tr > td {
   padding: 24px 40px;
   text-align: left;
   line-height: 25px;
   background-color: white;
 }
 
-tr> td:first-child{
+tr > td:first-child {
   font-weight: 600;
 }
 
@@ -67,18 +67,35 @@ p {
   word-wrap: break-word;
 }
 
-.position-center{
+.position-center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .header-shadow {
-  box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.1);
 }
 
 .big-shadow {
-  box-shadow: 0px 20px 150px 0px rgba(20, 61, 89, 0.07)
+  box-shadow: 0px 20px 150px 0px rgba(20, 61, 89, 0.07);
+}
+
+.grid-container {
+  display: grid;
+  grid-template:
+    ". . . . ."
+    "A1 A1 A1 A1 A1"
+    "A2 A2 A2 A2 A2"
+    "A3 A3 A3 A3 A3"
+    "A4 A4 A4 A4 A4"
+    "A5 A5 A5 A5 A5"
+    "A6 A6 A6 A6 A6";
+  grid-gap: 30px;
+}
+
+.grid-item {
+  grid-column-end: span 5;
 }
 
 @font-face {
@@ -90,7 +107,6 @@ p {
   font-family: "Montserrat-xl";
   src: url("../../public/assets/Font/montserrat/static/Montserrat-Bold.ttf");
 }
-
 
 @font-face {
   font-family: "Montserrat-2xl";

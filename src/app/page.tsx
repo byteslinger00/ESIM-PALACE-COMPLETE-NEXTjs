@@ -11,22 +11,6 @@ import { Categories } from "@/components/Sections/Categories";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  
-  const loaddata = async () =>{
-    console.log('loading start...')
-    let res = await fetch("https://test.esimplified.io/customer/esimpalace/api/countries_list", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          'Authorization': "Token ae9819d13e176fd276a958e1e3230b3080a73a2c",
-      },
-      body: JSON.stringify({
-
-      }),
-  })
-    let data = await res.json();
-    console.log(data);
-  }
   return (
     <main className="relative">
       <div className="absolute z-[-10] w-full h-[800px] bg-cover bg-center bg-homepage-background ">
@@ -38,7 +22,6 @@ export default function Home() {
       <Categories />
       <Section3 />
       <DownloadESIM />
-      <button onClick={async()=>await loaddata()} className="bg-black">Load</button>
     </main>
   );
 }

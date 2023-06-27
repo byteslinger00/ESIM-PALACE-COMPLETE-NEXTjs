@@ -2,17 +2,21 @@
 import { useEffect, useState } from "react";
 import { TabItem } from "./TabItem";
 
-export const SelectTab = () => {
+interface props {
+    setRegion: React.Dispatch<React.SetStateAction<string>>;
+    selectedRegion: string;
+}
+
+export const SelectTab: React.FC<props> = ({ setRegion, selectedRegion }) => {
     const [index, setIndex] = useState(2);
-    useEffect(()=>{console.log(index)},[index])
-    return(
+    return (
         <div className="grid grid-cols-6 border-b-[1px] border-[#F2B21B70] lg:mx-[100px] font-montserrat font-semibold max-md:hidden">
-            <TabItem title="Europe" index={0} selected_index={index} set_index={setIndex}/>
-            <TabItem title="North America" index={1} selected_index={index} set_index={setIndex}/>
-            <TabItem title="South America" index={2} selected_index={index} set_index={setIndex}/>
-            <TabItem title="Asia" index={3} selected_index={index} set_index={setIndex}/>
-            <TabItem title="Middle East" index={4} selected_index={index} set_index={setIndex}/>
-            <TabItem title="Africa" index={5} selected_index={index} set_index={setIndex}/>
+            <TabItem title="Europe" region="Europe" selected_region={selectedRegion} set_region={setRegion} />
+            <TabItem title="North America" region="North America" selected_region={selectedRegion} set_region={setRegion} />
+            <TabItem title="South America" region="South America" selected_region={selectedRegion} set_region={setRegion} />
+            <TabItem title="Asia" region="Asia" selected_region={selectedRegion} set_region={setRegion} />
+            <TabItem title="Middle East" region="Middle East" selected_region={selectedRegion} set_region={setRegion} />
+            <TabItem title="Africa" region="Africa" selected_region={selectedRegion} set_region={setRegion} />
         </div>
     )
 }

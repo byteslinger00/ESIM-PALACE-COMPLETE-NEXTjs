@@ -1,15 +1,15 @@
 interface props {
-    index: number;
-    selected_index: number;
+    region: string;
+    selected_region: string;
     title: string;
-    set_index: any;
+    set_region: React.Dispatch<React.SetStateAction<string>>;
 }
-export const TabItem: React.FC<props> = ({ index, selected_index, title, set_index }) => {
+export const TabItem: React.FC<props> = ({ region, selected_region, title, set_region }) => {
     return (
         <div
-            style={index === selected_index ? { color: "#F2B21B", borderBottomWidth: 2, borderColor: '#F2B21B' } : {}}
+            style={region === selected_region ? { color: "#F2B21B", borderBottomWidth: 2, borderColor: '#F2B21B' } : {}}
             className="py-3 hover:text-[#F2B21B] cursor-pointer" 
-            onClick={() => set_index(index)} 
+            onClick={() => set_region(region)} 
             >
             {title}
         </div>

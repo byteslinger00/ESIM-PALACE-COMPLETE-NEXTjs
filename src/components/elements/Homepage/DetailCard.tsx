@@ -1,4 +1,6 @@
 import Image from "next/image"
+
+
 export const DetailCard = () => {
     return (
         <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
