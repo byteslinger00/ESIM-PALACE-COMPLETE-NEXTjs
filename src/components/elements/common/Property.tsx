@@ -10,7 +10,7 @@ export const Property:React.FC<props> = ({data,validity}) => {
         <div className="w-full flex flex-col gap-2">
             <div className="flex flex-row">
                 <div className="flex flex-row gap-2">
-                    <Image src='/assets/Homepage/Icons/SVG Icon/Internet.svg' width={24} height={24} alt="internet" />
+                    <Image src='/assets/Packages page/Icons/Internet.svg' width={24} height={24} alt="internet" />
                     <p className="lg:text-[16px] text-[14px] leading-5 my-auto font-medium">Data</p>
                 </div>
                 <div className="grow"></div>
@@ -18,7 +18,7 @@ export const Property:React.FC<props> = ({data,validity}) => {
             </div>
             <div className="flex flex-row">
                 <div className="flex flex-row gap-2">
-                    <Image src='/assets/Homepage/Icons/SVG Icon/Calender.svg' width={24} height={24} alt="internet" />
+                    <Image src='/assets/Packages page/Icons/Calender.svg' width={24} height={24} alt="internet" />
                     <p className="lg:text-[16px] text-[14px] leading-5 my-auto font-medium">Validity</p>
                 </div>
                 <div className="grow"></div>

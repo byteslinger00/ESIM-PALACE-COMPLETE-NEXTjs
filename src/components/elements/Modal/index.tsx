@@ -34,7 +34,8 @@ export const Modal: React.FC<props> = ({ showModal }) => {
                             <input type='checkbox' className='w-[24px] h-[24px] my-auto' />
                             <p className='xl:text-[16px] text-[14px]'>I have read and accepted the terms of service and privacy policy.</p>
                         </div>
-                        <OrangeButton text='Buy Now' />
+                        <a href={`/transaction/1`}><OrangeButton text='Buy Now' /></a>
+                        
                     </div>
                     <div className="bg-[#EBF6FF] p-10 whitespace-normal flex flex-col gap-10">
                         <div className='flex flex-col gap-6'>

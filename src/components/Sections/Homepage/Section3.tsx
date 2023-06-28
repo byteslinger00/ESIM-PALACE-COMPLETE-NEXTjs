@@ -8,6 +8,7 @@ import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 import { details } from "@/types/details.type";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { toast } from "react-toastify";
+import { Modal } from "@/components/elements/Modal";
 
 export const Section3 = () => {
   const [popularCountries, setCountries] = useState<Array<packages>>();
@@ -15,6 +16,7 @@ export const Section3 = () => {
   const [selected_country, setCountry] = useState("")
   const [is_Loading, setLoading] = useState(false);
   const [details, setDetails] = useState<Array<details>>();
+  const [is_modal, showModal] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -56,7 +58,7 @@ export const Section3 = () => {
   }
 
   return (
-    <section className="relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 py-[135px] bg-[#F9F7F7] text-dark-solid text-center">
+    <section className="relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 pt-[135px] bg-[#F9F7F7] text-dark-solid text-center">
       <div className="flex flex-row">
         <p className="font-montserrat2xl xl:text-[48px] text-[32px] max-xl:mx-auto">Popular Countries</p>
       </div>
@@ -72,13 +74,13 @@ export const Section3 = () => {
             : ""
         }
         <div className={`max-xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 5) + 1}`}>
-          <Details data={details} />
+          <Details data={details} showModal={showModal} />
         </div>
         <div className={`xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 2) + 1}`}>
-          <Details data={details} />
+          <Details data={details} showModal={showModal} />
         </div>
       </div>
-
+      {is_modal ? <Modal showModal={showModal} /> : ''}
     </section>
   );
 };
