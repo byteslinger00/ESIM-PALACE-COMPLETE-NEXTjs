@@ -1,7 +1,11 @@
+'use client'
+
 import Image from "next/image";
 import { Nav } from "./nav";
+import useParticipantStore from "@/store/use-participant";
 
 export const Header = () => {
+  const { showSideBar } = useParticipantStore((state) => state);
   return (
     <div className="absolute w-full h-25 px-[300px] top-0 flex flex-row py-5 mx-medium:px-6 z-[10] header-shadow">
       <div className="w-20 grow">
@@ -33,7 +37,7 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <button className="my-auto w-10 h-10 p-[10px] border-[1px] border-[#E3E3E3] rounded-full text-white lg:hidden">
+        <button className="my-auto w-10 h-10 p-[10px] border-[1px] border-[#E3E3E3] rounded-full text-white lg:hidden" onClick={() => showSideBar(true)}>
           <Image
             src="/assets/Homepage/Icons/SVG Icon/Dark-align-right.svg"
             width={18}

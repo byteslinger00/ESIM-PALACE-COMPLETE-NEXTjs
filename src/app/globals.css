@@ -122,6 +122,15 @@ p {
   grid-area: A6;
 }
 
+.sidebar-show {
+  animation: 250ms cubic-bezier(0.33, 1, 0.68, 1) 0s 1 normal none running
+    Overlay--motion-slideInLeft;
+}
+@keyframes Overlay--motion-slideInLeft {
+  0% {
+    transform: translateX(100%);
+  }
+}
 
 @font-face {
   font-family: "Montserrat";
@@ -147,46 +156,46 @@ p {
   .grid-container {
     display: grid;
     grid-template:
-    ". ."
-    "B1 B1"
-    "B2 B2"
-    "B3 B3"
-    "B4 B4"
-    "B5 B5"
-    "B6 B6";
-  grid-gap: 30px;
+      ". ."
+      "B1 B1"
+      "B2 B2"
+      "B3 B3"
+      "B4 B4"
+      "B5 B5"
+      "B6 B6";
+    grid-gap: 30px;
   }
-  
+
   .grid-item {
     grid-column-end: span 1;
   }
 
-  .grid-A1{
+  .grid-A1 {
     grid-area: B1;
     grid-column: span 2;
   }
 
-  .grid-A2{
+  .grid-A2 {
     grid-area: B2;
     grid-column: span 2;
   }
 
-  .grid-A3{
+  .grid-A3 {
     grid-area: B3;
     grid-column: span 2;
   }
 
-  .grid-A4{
+  .grid-A4 {
     grid-area: B4;
     grid-column: span 2;
   }
 
-  .grid-A5{
+  .grid-A5 {
     grid-area: B5;
     grid-column: span 2;
   }
 
-  .grid-A6{
+  .grid-A6 {
     grid-area: B6;
     grid-column: span 2;
   }
