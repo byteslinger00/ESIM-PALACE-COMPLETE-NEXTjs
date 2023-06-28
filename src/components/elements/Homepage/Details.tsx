@@ -2,12 +2,11 @@ import { details } from "@/types/details.type";
 import { DetailCard } from "./DetailCard"
 
 interface props {
-    index: number;
     data?: Array<details>;
 }
-export const Details: React.FC<props> = ({ index, data }) => {
+export const Details: React.FC<props> = ({ data }) => {
     return (
-        <div className={`w-full grid xl:grid-cols-3 grid-cols-1 gap-[30px] mb-5 grid-item grid-A${index}`}>
+        <div className={`w-full grid xl:grid-cols-3 grid-cols-1 gap-[30px] mb-5 `}>
             {
                 data?.length === 0 ? ''
                     :

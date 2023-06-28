@@ -145,8 +145,16 @@ p {
 
 @media screen and (max-width: 1280px) {
   .grid-container {
-    display: block;
-    grid-template: none;
+    display: grid;
+    grid-template:
+    ". ."
+    "B1 B1"
+    "B2 B2"
+    "B3 B3"
+    "B4 B4"
+    "B5 B5"
+    "B6 B6";
+  grid-gap: 30px;
   }
   
   .grid-item {
@@ -154,32 +162,32 @@ p {
   }
 
   .grid-A1{
-    grid-area: auto;
+    grid-area: B1;
     grid-column: span 2;
   }
 
   .grid-A2{
-    grid-area: auto;
+    grid-area: B2;
     grid-column: span 2;
   }
 
   .grid-A3{
-    grid-area: auto;
+    grid-area: B3;
     grid-column: span 2;
   }
 
   .grid-A4{
-    grid-area: auto;
+    grid-area: B4;
     grid-column: span 2;
   }
 
   .grid-A5{
-    grid-area: auto;
+    grid-area: B5;
     grid-column: span 2;
   }
 
   .grid-A6{
-    grid-area: auto;
+    grid-area: B6;
     grid-column: span 2;
   }
 }

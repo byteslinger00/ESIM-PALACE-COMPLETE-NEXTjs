@@ -22,34 +22,33 @@ export const Section3 = () => {
       const data = await getCountriesByRegion('Popular');
       if (data === false) {
         toast.error("Connection Failed!", {
-            position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.TOP_RIGHT
         });
         setLoading(false);
         return;
-    }
+      }
       setCountries(data)
       setLoading(false);
     })()
   }, [])
 
   const LoadDetail = async (country_name: string, index: number) => {
-    if(country_name === selected_country)
-    {
+    if (country_name === selected_country) {
       setCountry("");
       setDetails([]);
-      return ;
+      return;
     }
     setCountry(country_name)
     setLoading(true);
-    
+
     const data = await getDetailsByCountry(country_name);
     if (data === false) {
       toast.error("Connection Failed", {
-          position: toast.POSITION.TOP_RIGHT
+        position: toast.POSITION.TOP_RIGHT
       });
       setLoading(false);
       return;
-  }
+    }
     setDetails(data);
     setIndex(index)
     // setIndex(Math.floor(index / 5) + 1);
@@ -72,7 +71,12 @@ export const Section3 = () => {
             popularCountries?.map((item, index) => <CountryCard key={"Popular Country" + index} selected_country={selected_country} id={index} country_code={item.country_code} country={item.country_name} onLoad={LoadDetail} />)
             : ""
         }
-        <Details index={selected_cardIndex} data={details}/>
+        <div className={`max-xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 5) + 1}`}>
+          <Details data={details} />
+        </div>
+        <div className={`xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 2) + 1}`}>
+          <Details data={details} />
+        </div>
       </div>
 
     </section>
