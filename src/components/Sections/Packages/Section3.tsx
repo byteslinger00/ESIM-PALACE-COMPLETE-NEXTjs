@@ -1,18 +1,21 @@
 "use client"
-import { useEffect, useState } from "react";
 
+import { useEffect, useState } from "react";
+//components
 import { SelectTab } from "@/components/elements/Packages/SelectTab";
 import { Search } from "@/components/elements/Packages/Search";
 import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import { Modal } from "@/components/elements/Modal";
-import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
-import { packages } from "@/types/packages.type";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { toast } from 'react-toastify';
 import { CountryCard } from "@/components/elements/Homepage/CountryCard";
-import { details } from "@/types/details.type";
-import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 import { Details } from "@/components/elements/Homepage/Details";
+//actions
+import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
+import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
+//type
+import { details } from "@/types/details.type";
+import { packages } from "@/types/packages.type";
 
 export const Section3 = () => {
 
@@ -29,6 +32,7 @@ export const Section3 = () => {
             setLoading(true)
             setCountry('');
             setDetails([])
+            
             const data = await getCountriesByRegion(selectedRegion);
             if (data === false) {
                 toast.error("Invalid Region", {
@@ -61,7 +65,6 @@ export const Section3 = () => {
         }
         setDetails(data);
         setIndex(index)
-        // setIndex(Math.floor(index / 5) + 1);
         setLoading(false);
     }
 
@@ -71,13 +74,13 @@ export const Section3 = () => {
 
             <SelectTab setRegion={setRegion} selectedRegion={selectedRegion} />
             <div className="flex flex-row gap-5">
-                <select className="bg-[#FFF8E6] outline-none border-[1px] border-[#F2B21B] rounded-lg h-[50px] px-[15px] font-montserrat font-semibold md:hidden grow">
-                    <option value={0}>Europe</option>
-                    <option value={0}>North America</option>
-                    <option value={0}>South America</option>
-                    <option value={0} >Asia</option>
-                    <option value={0}>Middle East</option>
-                    <option value={0}>Africa</option>
+                <select className="bg-[#FFF8E6] outline-none border-[1px] border-[#F2B21B] rounded-lg h-[50px] px-[15px] font-montserrat font-semibold md:hidden grow" defaultValue={selectedRegion} onChange={(e) => setRegion(e.target.value)}>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Middle East">Middle East</option>
+                    <option value="Africa">Africa</option>
                 </select>
                 <Search />
             </div>
@@ -94,10 +97,10 @@ export const Section3 = () => {
                         />)
                 }) : ''}
                 <div className={`max-xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 5) + 1}`}>
-                    <Details data={details} />
+                    <Details data={details} showModal={showModal} />
                 </div>
                 <div className={`xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 2) + 1}`}>
-                    <Details data={details} />
+                    <Details data={details} showModal={showModal} />
                 </div>
             </div>
             <OrangeButton text="Show More Countries" />

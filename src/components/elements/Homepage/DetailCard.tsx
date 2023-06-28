@@ -9,15 +9,17 @@ interface props {
     plan: string;
     price: string;
     currency: string;
+    id: number;
+    showData: (index: number) => void;
 }
 
-export const DetailCard: React.FC<props> = ({ country_code, country_name, data, validity, plan, currency, price }) => {
+export const DetailCard: React.FC<props> = ({ country_code, country_name, data, validity, plan, currency, price, id, showData }) => {
     return (
         <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
             <div className="flex flex-row">
                 <p className="md:text-[23px] text-[18px] font-bold leading-7 grow">{country_name}</p>
                 <div className="overflow-hidden w-[38px] h-[38px] rounded-full border-white border-[1px]">
-                <FlagIcon code={country_code as FlagIconCode} className="!max-w-[100px] w-[50px] !mx-[-6px]" />
+                    <FlagIcon code={country_code as FlagIconCode} className="!max-w-[100px] w-[50px] !mx-[-6px]" />
                 </div>
             </div>
             <hr className="opacity-20" />
@@ -51,7 +53,12 @@ export const DetailCard: React.FC<props> = ({ country_code, country_name, data, 
                     <p className="md:text-[13px] text-[10px] font-medium leading-4">No SIM Cards</p>
                 </div>
             </div>
-            <button className="bg-white text-black w-full mt-7 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg">US {currency}{price} - Buy Now</button>
+            <button
+                className="bg-white text-black w-full mt-7 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg"
+                onClick={() => showData(id)}
+            >
+                {currency}{price} - Buy Now
+            </button>
         </div>
     )
 }

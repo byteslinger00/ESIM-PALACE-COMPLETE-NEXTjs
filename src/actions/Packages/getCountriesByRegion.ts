@@ -15,11 +15,11 @@ export default async function getCountriesByRegion(region: string) {
         }),
       }
     );
+    if (res.ok === false) throw res.statusText;
     const response = await res.json();
-    if (region !== "Popular") response.elements.shift();
+
     return response.elements;
   } catch (error) {
-    console.log("Connection error!");
     return false;
   }
 }
