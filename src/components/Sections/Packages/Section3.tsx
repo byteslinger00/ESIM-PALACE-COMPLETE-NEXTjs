@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 
 import { SelectTab } from "@/components/elements/Packages/SelectTab";
-import { Card } from "@/components/elements/Packages/Card";
 import { Search } from "@/components/elements/Packages/Search";
 import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import { Modal } from "@/components/elements/Modal";
@@ -10,6 +9,10 @@ import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
 import { packages } from "@/types/packages.type";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { toast } from 'react-toastify';
+import { CountryCard } from "@/components/elements/Homepage/CountryCard";
+import { details } from "@/types/details.type";
+import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
+import { Details } from "@/components/elements/Homepage/Details";
 
 export const Section3 = () => {
 
@@ -17,10 +20,15 @@ export const Section3 = () => {
     const [selectedRegion, setRegion] = useState('South America');
     const [countries, setCountries] = useState<Array<packages>>();
     const [is_Loading, setLoading] = useState(false);
+    const [selected_cardIndex, setIndex] = useState(1);
+    const [selected_country, setCountry] = useState("")
+    const [details, setDetails] = useState<Array<details>>();
 
     useEffect(() => {
         (async () => {
             setLoading(true)
+            setCountry('');
+            setDetails([])
             const data = await getCountriesByRegion(selectedRegion);
             if (data === false) {
                 toast.error("Invalid Region", {
@@ -33,6 +41,29 @@ export const Section3 = () => {
             setLoading(false);
         })()
     }, [selectedRegion]);
+
+    const LoadDetail = async (country_name: string, index: number) => {
+        if (country_name === selected_country) {
+            setCountry("");
+            setDetails([]);
+            return;
+        }
+        setCountry(country_name)
+        setLoading(true);
+
+        const data = await getDetailsByCountry(country_name);
+        if (data === false) {
+            toast.error("Connection Failed", {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            setLoading(false);
+            return;
+        }
+        setDetails(data);
+        setIndex(index)
+        // setIndex(Math.floor(index / 5) + 1);
+        setLoading(false);
+    }
 
     return (
         <section className="relative mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[135px] bg-[#F9F7F7] text-dark-solid text-center flex flex-col gap-10">
@@ -50,15 +81,24 @@ export const Section3 = () => {
                 </select>
                 <Search />
             </div>
-            <div className="grid md:grid-cols-3 gap-[30px] grid-cols-2">
+
+            <div className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container">
                 {countries?.length !== 0 ? countries?.map((item, index) => {
                     return (
-                        <Card key={index}
+                        <CountryCard key={index}
+                            selected_country={selected_country}
                             country_code={item.country_code}
-                            title={item.country_name}
-                            showModal={showModal}
+                            country={item.country_name}
+                            id={index}
+                            onLoad={LoadDetail}
                         />)
                 }) : ''}
+                <div className={`max-xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 5) + 1}`}>
+                    <Details data={details} />
+                </div>
+                <div className={`xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 2) + 1}`}>
+                    <Details data={details} />
+                </div>
             </div>
             <OrangeButton text="Show More Countries" />
             {is_modal ? <Modal showModal={showModal} /> : ''}
