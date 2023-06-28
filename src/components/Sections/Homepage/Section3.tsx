@@ -33,8 +33,15 @@ export const Section3 = () => {
   }, [])
 
   const LoadDetail = async (country_name: string, index: number) => {
-    setLoading(true);
+    if(country_name === selected_country)
+    {
+      setCountry("");
+      setDetails([]);
+      return ;
+    }
     setCountry(country_name)
+    setLoading(true);
+    
     const data = await getDetailsByCountry(country_name);
     if (data === false) {
       toast.error("Connection Failed", {
@@ -44,7 +51,8 @@ export const Section3 = () => {
       return;
   }
     setDetails(data);
-    setIndex(Math.floor(index / 5) + 1);
+    setIndex(index)
+    // setIndex(Math.floor(index / 5) + 1);
     setLoading(false);
   }
 
