@@ -1,3 +1,4 @@
+import { checkFlag } from "@/utils/checkFlag";
 import Image from "next/image"
 import { FlagIcon, FlagIconCode } from 'react-flag-kit';
 
@@ -19,7 +20,13 @@ export const DetailCard: React.FC<props> = ({ country_code, country_name, data, 
             <div className="flex flex-row">
                 <p className="md:text-[23px] text-[18px] font-bold leading-7 grow">{country_name}</p>
                 <div className="overflow-hidden w-[38px] h-[38px] rounded-full border-white border-[1px]">
-                    <FlagIcon code={country_code as FlagIconCode} className="!max-w-[100px] w-[50px] !mx-[-6px]" />
+                    {
+                        checkFlag(country_code) ?
+                            <Image src={`/assets/Region Flag/${country_code}.jpg`} width={500} height={500} className="!max-w-[100px] w-[50px] !mx-[-6px]" alt="Region flag" />
+                            :
+                            <FlagIcon code={country_code as FlagIconCode} className="!max-w-[100px] w-[50px] !mx-[-6px]" />
+                    }
+
                 </div>
             </div>
             <hr className="opacity-20" />

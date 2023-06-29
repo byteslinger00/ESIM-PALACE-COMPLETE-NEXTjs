@@ -1,4 +1,5 @@
 'use client'
+import { checkFlag } from "@/utils/checkFlag";
 import Image from "next/image";
 import { FlagIcon, FlagIconCode } from 'react-flag-kit';
 
@@ -13,7 +14,13 @@ interface props {
 export const CountryCard: React.FC<props> = ({ country_code, country, selected_country, id, onLoad }) => {
   return (
     <div className={`w-full p-3 rounded-2xl hover:bg-white border-[#C8E8FF] border-[1px] flex flex-col gap-2 cursor-pointer ${selected_country === country ? 'bg-white' : ''}`} onClick={() => onLoad(country, id)}>
-      <FlagIcon code={country_code as FlagIconCode} className="w-full rounded-[12px]" />
+      {
+        checkFlag(country_code) ?
+          <Image src={`/assets/Region Flag/${country_code}.jpg`} width={500} height={500} className="w-full rounded-[12px]" alt="Region flag"/>
+          :
+          <FlagIcon code={country_code as FlagIconCode} className="w-full rounded-[12px]" />
+      }
+
       <p className="text-1st-color font-bold font-hellix sm:text-[24px] text-[18px] text-center">
         {country}
       </p>
