@@ -17,16 +17,19 @@ export const Section3 = () => {
   const [is_Loading, setLoading] = useState(false);
   const [details, setDetails] = useState<Array<details>>();
   const [is_modal, showModal] = useState(false);
+  const [detailsVisible, setVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
       setLoading(true)
+      setVisible(false);
       const data = await getCountriesByRegion('Popular');
       if (data === false) {
         toast.error("Connection Failed!", {
           position: toast.POSITION.TOP_RIGHT
         });
         setLoading(false);
+        setVisible(false);
         return;
       }
       setCountries(data)
@@ -37,11 +40,12 @@ export const Section3 = () => {
   const LoadDetail = async (country_name: string, index: number) => {
     if (country_name === selected_country) {
       setCountry("");
-      setDetails([]);
+      setVisible(false);
       return;
     }
     setCountry(country_name)
     setLoading(true);
+    setVisible(false);
 
     const data = await getDetailsByCountry(country_name);
     if (data === false) {
@@ -49,11 +53,12 @@ export const Section3 = () => {
         position: toast.POSITION.TOP_RIGHT
       });
       setLoading(false);
+      setVisible(false);
       return;
     }
     setDetails(data);
+    setVisible(true);
     setIndex(index)
-    // setIndex(Math.floor(index / 5) + 1);
     setLoading(false);
   }
 
@@ -74,10 +79,10 @@ export const Section3 = () => {
             : ""
         }
         <div className={`max-xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 5) + 1}`}>
-          <Details data={details} showModal={showModal} />
+          <Details data={details} showModal={showModal} isVisible={detailsVisible}/>
         </div>
         <div className={`xl:hidden grid-item grid-A${Math.floor(selected_cardIndex / 2) + 1}`}>
-          <Details data={details} showModal={showModal} />
+          <Details data={details} showModal={showModal} isVisible={detailsVisible}/>
         </div>
       </div>
       {is_modal ? <Modal showModal={showModal} /> : ''}

@@ -24,20 +24,21 @@ export const Section3 = () => {
   const [is_Loading, setLoading] = useState(false);
   const [selected_cardIndex, setIndex] = useState(1);
   const [selected_country, setCountry] = useState("");
-  const [details, setDetails] = useState<Array<details>>();
+  const [details, setDetails] = useState<Array<details>>([]);
+  const [detailsVisible, setVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       setCountry("");
-      setDetails([]);
-
+      setVisible(false);
       const data = await getCountriesByRegion(selectedRegion);
       if (data === false) {
         toast.error("Invalid Region", {
           position: toast.POSITION.TOP_RIGHT,
         });
         setLoading(false);
+        setVisible(false);
         return;
       }
       setCountries(data);
@@ -48,22 +49,24 @@ export const Section3 = () => {
   const LoadDetail = async (country_name: string, index: number) => {
     if (country_name === selected_country) {
       setCountry("");
-      setDetails([]);
+      setVisible(false);
       return;
     }
     setCountry(country_name);
     setLoading(true);
-
+    setVisible(false);
     const data = await getDetailsByCountry(country_name);
     if (data === false) {
       toast.error("Connection Failed", {
         position: toast.POSITION.TOP_RIGHT,
       });
       setLoading(false);
+      setVisible(false);
       return;
     }
     setDetails(data);
     setIndex(index);
+    setVisible(true);
     setLoading(false);
   };
 
@@ -74,7 +77,7 @@ export const Section3 = () => {
       <SelectTab setRegion={setRegion} selectedRegion={selectedRegion} />
       <div className="flex flex-row gap-5">
         <select
-          className="bg-[#FFF8E6] outline-none border-[1px] border-[#F2B21B] rounded-lg h-[50px] px-[15px] font-montserrat font-semibold md:hidden grow"
+          className="bg-[#FFF8E6] outline-none border-[1px] border-[#F2B21B] rounded-lg h-[50px] px-[15px] font-montserrat font-semibold lg:hidden grow"
           defaultValue={selectedRegion}
           onChange={(e) => setRegion(e.target.value)}
         >
@@ -111,14 +114,15 @@ export const Section3 = () => {
             Math.floor(selected_cardIndex / 5) + 1
           }`}
         >
-          <Details data={details} showModal={showModal} />
+          <Details data={details} showModal={showModal} isVisible={detailsVisible} />
         </div>
+
         <div
           className={`xl:hidden grid-item grid-A${
             Math.floor(selected_cardIndex / 2) + 1
           }`}
         >
-          <Details data={details} showModal={showModal} />
+          <Details data={details} showModal={showModal} isVisible={detailsVisible}/>
         </div>
       </div>
       <OrangeButton text="Show More Countries" />
