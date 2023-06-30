@@ -10,7 +10,7 @@ interface props {
 export const SelectTab: React.FC<props> = ({ setRegion, selectedRegion }) => {
   const [index, setIndex] = useState(2);
   return (
-    <div className="grid grid-cols-9 border-b-[1px] border-[#F2B21B70] font-montserrat font-semibold max-md:hidden">
+    <div className="grid grid-cols-9 border-b-[1px] border-[#F2B21B70] font-montserrat font-semibold max-lg:hidden">
       <TabItem
         title="Africa"
         region="Africa"
