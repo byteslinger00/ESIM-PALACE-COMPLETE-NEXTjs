@@ -3,7 +3,6 @@ import { details } from "@/types/details.type";
 import { DetailCard } from "./DetailCard";
 import useParticipantStore from "@/store/use-participant";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { details_container } from "@/utils/animations";
 
 interface props {

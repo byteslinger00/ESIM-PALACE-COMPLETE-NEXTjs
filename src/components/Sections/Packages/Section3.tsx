@@ -16,6 +16,8 @@ import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 //type
 import { details } from "@/types/details.type";
 import { packages } from "@/types/packages.type";
+import { motion } from "framer-motion";
+import { card_container, card_item } from "@/utils/animations";
 
 export const Section3 = () => {
   const [is_modal, showModal] = useState(false);
@@ -32,6 +34,7 @@ export const Section3 = () => {
       setLoading(true);
       setCountry("");
       setVisible(false);
+      setCountries([]);
       const data = await getCountriesByRegion(selectedRegion);
       if (data === false) {
         toast.error("Invalid Region", {
@@ -94,18 +97,24 @@ export const Section3 = () => {
         <Search />
       </div>
 
-      <div className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container">
+      <motion.div
+        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container"
+        variants={card_container}
+        initial="hidden"
+        animate={countries?.length ? "visible" : "hidden"}
+      >
         {countries?.length !== 0
           ? countries?.map((item, index) => {
               return (
-                <CountryCard
-                  key={index}
-                  selected_country={selected_country}
-                  country_code={item.country_code}
-                  country={item.country_name}
-                  id={index}
-                  onLoad={LoadDetail}
-                />
+                <motion.div key={index} variants={card_item}>
+                  <CountryCard
+                    selected_country={selected_country}
+                    country_code={item.country_code}
+                    country={item.country_name}
+                    id={index}
+                    onLoad={LoadDetail}
+                  />
+                </motion.div>
               );
             })
           : ""}
@@ -114,7 +123,11 @@ export const Section3 = () => {
             Math.floor(selected_cardIndex / 5) + 1
           }`}
         >
-          <Details data={details} showModal={showModal} isVisible={detailsVisible} />
+          <Details
+            data={details}
+            showModal={showModal}
+            isVisible={detailsVisible}
+          />
         </div>
 
         <div
@@ -122,9 +135,13 @@ export const Section3 = () => {
             Math.floor(selected_cardIndex / 2) + 1
           }`}
         >
-          <Details data={details} showModal={showModal} isVisible={detailsVisible}/>
+          <Details
+            data={details}
+            showModal={showModal}
+            isVisible={detailsVisible}
+          />
         </div>
-      </div>
+      </motion.div>
       <OrangeButton text="Show More Countries" />
       {is_modal ? <Modal showModal={showModal} /> : ""}
     </section>

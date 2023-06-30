@@ -8,6 +8,7 @@ import { packages } from "@/types/packages.type";
 import useParticipantStore from "@/store/use-participant";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";
 import { checkFlag } from "@/utils/checkFlag";
+import { SupportedCountries } from "./SimSupportedCountries";
 
 interface props {
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -88,22 +89,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
             </div>
             <div className="flex flex-col gap-4">
               <Properties title="Network" text="Proximius PLC" />
-              <Properties title="Speed" text="Proximius PLC" />
-              <Properties title="Speed" text="Proximius PLC" />
-              <Properties title="Tethering / Hotspot" text="Proximius PLC" />
-              <Properties title="APN" text="Proximius PLC" />
-              <Properties
-                title="Activation"
-                text={selected_package.activation_policy}
-              />
-              <Properties
-                title="Compatibillity"
-                text="all smartphones with eSim enabled technology. Functionality on smartwatches and tablets is not guaranteed."
-              />
-              <Properties
-                title="Duration"
-                text="Packages will last the full duration period as specified, unless all the data is used before the end of the duration period. Any unused data will expire after the period ends.re."
-              />
+              <SupportedCountries countries={selected_package.supported_countries}/>
             </div>
           </div>
         </div>
