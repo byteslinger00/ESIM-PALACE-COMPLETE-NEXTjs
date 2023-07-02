@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { CountryCard } from "../../elements/Homepage/CountryCard";
 import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
 import { packages } from "@/types/packages.type";
@@ -38,7 +38,6 @@ export const Section3 = () => {
       setLoading(false);
     })();
   }, []);
-  useEffect(()=> {console.log(is_Loading)},[is_Loading])
   const LoadDetail = async (country_name: string, index: number) => {
     if (country_name === selected_country) {
       setCountry("");

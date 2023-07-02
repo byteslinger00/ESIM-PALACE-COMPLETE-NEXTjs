@@ -17,7 +17,6 @@ export default async function getDetailsByCountry(country_name: string) {
     );
     if (res.ok === false) throw res.statusText;
     const response = await res.json();
-    console.log(response)
     return response.elements;
   } catch (error) {
     return false;

@@ -1,9 +1,7 @@
 import NextAuth from "next-auth";
-import { NextApiRequest, NextApiResponse } from "next";
 import GoogleProvider from "next-auth/providers/google";
-import LinkedinProvider from "next-auth/providers/linkedin";
-
 const SERVER_ERR_MSG = "Something went wrong in a server."
+console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 const authOptions: any = {
             providers: [
                 GoogleProvider({
@@ -21,7 +19,6 @@ const authOptions: any = {
                 //         return Promise.resolve(session);
                 // },
                 async signIn({ user }: any) {
-                    console.log(user);
                     try {
                         return Promise.resolve(true);
                     } catch (err) {
@@ -30,5 +27,6 @@ const authOptions: any = {
                 },
             },
         };
+
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
