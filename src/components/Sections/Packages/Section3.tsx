@@ -98,7 +98,7 @@ export const Section3 = () => {
       </div>
 
       <motion.div
-        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container"
+        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container "
         variants={card_container}
         initial="hidden"
         animate={countries?.length ? "visible" : "hidden"}
