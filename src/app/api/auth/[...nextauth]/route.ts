@@ -7,8 +7,8 @@ const SERVER_ERR_MSG = "Something went wrong in a server."
 const authOptions: any = {
             providers: [
                 GoogleProvider({
-                    clientId: "185531830886-iqnpvpqfoqftj4mg8hv5c5k6odd6tb4h.apps.googleusercontent.com",
-                    clientSecret:"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",
+                    clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
+                    clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || '',
                 }),
             ],
             pages: {
