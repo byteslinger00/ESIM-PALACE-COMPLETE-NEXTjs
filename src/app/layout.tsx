@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         style={is_sidebar ? { overflow: "hidden" } : { overflow: "auto" }}
       >
         {/* <NextAuthProvider> */}
-          <ToastContainer />
+          <ToastContainer hideProgressBar/>
           {children}
           <Footer />
           {is_sidebar ? <SideBar /> : ""}

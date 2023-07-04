@@ -3,10 +3,14 @@ import { Logo } from "@/components/SignUp/Logo";
 import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { TextInput } from "@/components/SignUp/TextInput";
 
 export default function Page() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const onGoogleBtnClicked = () => {
-    signIn("google", { callbackUrl: "/sgsgsgsgsgs" });
+    signIn("google");
   };
   return (
     <main className="mt-[180px] relative">
@@ -16,25 +20,17 @@ export default function Page() {
             <h1 className="md:text-[48px] text-[30px] font-montserrat2xl text-center mb-[10px]">
               Log In
             </h1>
-            <input
-              type="text"
-              className="bg-[#EBF6FF] rounded-[14px] md:text-[18px] text-[14px] px-5 py-4 text-[#081B2782] placeholder:text-[#081B2782]"
-              placeholder="Helex Mofidex"
-            />
-            <input
-              type="text"
-              className="bg-[#EBF6FF] rounded-[14px] md:text-[18px] text-[14px] px-5 py-4 text-[#081B2782] placeholder:text-[#081B2782]"
+            <TextInput
+              value={email}
+              setValue={setEmail}
               placeholder="info@example.com"
-            />
-            <input
               type="text"
-              className="bg-[#EBF6FF] rounded-[14px] md:text-[18px] text-[14px] px-5 py-4 text-[#081B2782] placeholder:text-[#081B2782]"
-              placeholder="+123 4456 7889 88"
             />
-            <input
-              type="text"
-              className="bg-[#EBF6FF] rounded-[14px] md:text-[18px] text-[14px] px-5 py-4 text-[#081B2782] placeholder:text-[#081B2782]"
+            <TextInput
+              value={password}
+              setValue={setPassword}
               placeholder="**** **** **** ****"
+              type="password"
             />
             <div className="md:text-[18px] text-[14px] max-md:text-center">
               By signing up you agree to Dataesim’s
