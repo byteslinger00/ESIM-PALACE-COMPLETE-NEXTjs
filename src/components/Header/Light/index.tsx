@@ -2,9 +2,17 @@
 import Image from "next/image";
 import { Nav } from "./nav";
 import useParticipantStore from "@/store/use-participant";
+import { useEffect, useState } from "react";
+import { Detail } from "./detail";
 
 export const Header = () => {
   const { showSideBar } = useParticipantStore((state) => state);
+  const [is_Logged, setLogged] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("auth_hash")) setLogged(true);
+  }, []);
+
   return (
     <div className="absolute w-full h-25 px-[300px] top-0 flex flex-row py-5 mx-medium:px-6">
       <div className="w-20 grow">
@@ -36,19 +44,8 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <button
-          className="my-auto w-10 h-10 p-[10px] border-[1px] border-border-normal rounded-full text-white lg:hidden"
-          onClick={() => showSideBar(true)}
-        >
-          <Image
-            src="/assets/Homepage/Icons/SVG Icon/align-right.svg"
-            width={18}
-            height={18}
-            alt="search-icon"
-            className="min-w-[18px] h-[18px] m-auto"
-          />
-        </button>
-        {sessionStorage.getItem("auth_hash") ? (
+        <Detail is_Logged={is_Logged}/>
+        {is_Logged ? (
           ""
         ) : (
           <a
@@ -58,7 +55,7 @@ export const Header = () => {
             <p className="leading-3">Sign Up</p>
           </a>
         )}
-        {sessionStorage.getItem("auth_hash") ? (
+        {is_Logged ? (
           ""
         ) : (
           <a
