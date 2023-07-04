@@ -43,7 +43,7 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <Detail is_Logged={is_logged}/>
+        <Detail />
         {is_logged ? (
           ""
         ) : (
