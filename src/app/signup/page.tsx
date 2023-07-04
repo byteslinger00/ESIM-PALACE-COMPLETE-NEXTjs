@@ -6,24 +6,34 @@ import { TextInput } from "@/components/SignUp/TextInput";
 import { signup_validate } from "@/utils/validation";
 import { SignUpByEmail } from "@/actions/Signup/signUpByEmail";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/elements/common/Spinner";
 
 export default function Page() {
-  const [id, setID] = useState('');
+  const [id, setID] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [is_Loading, setLoading] = useState(false);
   const router = useRouter();
 
   const clickSignUp = async () => {
-    if(signup_validate(toast, id, name, email, phone, password))
-        return ;
-    let res = await SignUpByEmail(toast, id,name,email,password);
-    if(res) router.push('/login');
+    if (signup_validate(toast, id, name, email, phone, password)) return;
+    setLoading(true);
+    let res = await SignUpByEmail(toast, id, name, email, password);
+    setLoading(false);
+    if (res) router.push("/login");
   };
 
   return (
-    <main className="mt-[180px] relative">
+    <main className="mt-[180px]">
+      {is_Loading ? (
+        <div className="fixed top-0 left-0 w-[100vw] h-[100vh] z-[500]">
+          <Spinner />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="mx-9 grid xl:grid-cols-2 grid-cols-1">
         <div>
           <div className="md:w-[630px] w-full md:p-[50px] md:gap-5 gap-4 bg-white xl:float-right mx-auto md:big-shadow rounded-[32px] flex flex-col font-montserrat">

@@ -6,20 +6,31 @@ import { useState } from "react";
 import { TextInput } from "@/components/SignUp/TextInput";
 import { LoginByID } from "@/actions/Login/loginById";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/elements/common/Spinner";
 
 export default function Page() {
-  const [id, setID] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setID] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+  const [is_Loading, setLoading] = useState(false);
   const onGoogleBtnClicked = () => {
     signIn("google");
   };
   const clickLogin = async () => {
-    let data = await LoginByID(toast,id,password);
-    if(data.customer_authenticated) router.push('/')
-  }
+    setLoading(true);
+    let data = await LoginByID(toast, id, password);
+    setLoading(false);
+    if (data.customer_authenticated) router.push("/");
+  };
   return (
-    <main className="mt-[180px] relative">
+    <main className="mt-[180px]">
+      {is_Loading ? (
+        <div className="fixed top-0 left-0 w-[100vw] h-[100vh] z-[500]">
+          <Spinner />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="mx-9 grid xl:grid-cols-2 grid-cols-1">
         <div>
           <div className="md:w-[630px] w-full md:p-[50px] md:gap-5 gap-4 bg-white xl:float-right mx-auto md:big-shadow rounded-[32px] flex flex-col font-montserrat">
@@ -49,7 +60,10 @@ export default function Page() {
                 Privacy Policy.
               </a>
             </div>
-            <button className="py-6 px-9 md:max-w-[245px] md:text-[18px] text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold" onClick={clickLogin}>
+            <button
+              className="py-6 px-9 md:max-w-[245px] md:text-[18px] text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold"
+              onClick={clickLogin}
+            >
               <p className="md:leading-[13px] leading-[11px]">Log In</p>
             </button>
             <p className="md:text-[18px] text-[14px] max-md:mx-auto">
