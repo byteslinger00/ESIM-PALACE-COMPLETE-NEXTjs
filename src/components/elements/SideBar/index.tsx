@@ -1,6 +1,10 @@
 import useParticipantStore from "@/store/use-participant"
-import Link from 'next/link'
 import { SideBarItem } from "./SideBarItem";
+import { RiUserSettingsLine, RiHomeOfficeLine } from "react-icons/ri";
+import {LuPackageOpen, LuHelpCircle} from 'react-icons/lu'
+import {MdSupportAgent} from 'react-icons/md'
+import {TbAffiliate, TbLogout2} from 'react-icons/tb'
+import {GrContact} from 'react-icons/gr'
 
 export const SideBar = () => {
     const { is_sidebar, showSideBar } = useParticipantStore((state) => state);
@@ -12,17 +16,17 @@ export const SideBar = () => {
                <div>
                </div>
                <hr/>
-               <SideBarItem href="/profile" title="Your Profile"/>
+               <SideBarItem href="/profile" title="Your Profile" icon={<RiUserSettingsLine size={18} className="my-auto"/>}/>
                <hr/>
-               <SideBarItem href="/" title="Home"/>
-               <SideBarItem href="/packages" title="Packages"/>
+                <SideBarItem href="/" title="Home" icon={<RiHomeOfficeLine size={18} className="my-auto"/>}/>
+               <SideBarItem href="/packages" title="Packages" icon={<LuPackageOpen size={18} className="my-auto"/>}/>
                <hr />
-               <SideBarItem href="/about" title="About us"/>
-               <SideBarItem href="/support" title="Support"/>
-               <SideBarItem href="/affiliates" title="Affiliates"/>
-               <SideBarItem href="/contact" title="Contact us"/>
+               <SideBarItem href="/about" title="About us" icon={<LuHelpCircle size={18} className="my-auto"/>}/>
+               <SideBarItem href="/support" title="Support" icon={<MdSupportAgent size={18} className="my-auto"/>}/>
+               <SideBarItem href="/affiliates" title="Affiliates" icon={<TbAffiliate size={18} className="my-auto"/>}/>
+               <SideBarItem href="/contact" title="Contact us" icon={<GrContact size={18} className="my-auto"/>}/>
                <hr />
-               <SideBarItem href="/" title="Sign Out"/>
+               <SideBarItem href="#" title="Sign Out" icon={<TbLogout2 size={18} className="my-auto"/>}/>
             </div>
         </div>
     )

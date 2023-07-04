@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { Detail } from "./detail";
 
 export const Header = () => {
-  const [is_Logged, setLogged] = useState(false);
+  const { is_logged, setLogged } = useParticipantStore((state) => state);
 
   useEffect(() => {
     if (sessionStorage.getItem("auth_hash")) setLogged(true);
-  }, []);
+  }, [setLogged]);
 
   return (
     <div className="absolute w-full h-25 px-[300px] top-0 flex flex-row py-5 mx-medium:px-6 z-[10] header-shadow">
@@ -44,8 +44,8 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <Detail is_Logged={is_Logged} />
-        {is_Logged ? (
+        <Detail is_Logged={is_logged} />
+        {is_logged ? (
           ""
         ) : (
           <a
@@ -55,7 +55,7 @@ export const Header = () => {
             <p className="leading-3">Sign Up</p>
           </a>
         )}
-        {is_Logged ? (
+        {is_logged ? (
           ""
         ) : (
           <a
