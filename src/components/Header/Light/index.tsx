@@ -36,7 +36,10 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <button className="my-auto w-10 h-10 p-[10px] border-[1px] border-border-normal rounded-full text-white lg:hidden" onClick={() => showSideBar(true)}>
+        <button
+          className="my-auto w-10 h-10 p-[10px] border-[1px] border-border-normal rounded-full text-white lg:hidden"
+          onClick={() => showSideBar(true)}
+        >
           <Image
             src="/assets/Homepage/Icons/SVG Icon/align-right.svg"
             width={18}
@@ -45,12 +48,26 @@ export const Header = () => {
             className="min-w-[18px] h-[18px] m-auto"
           />
         </button>
-        <a className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold bg-white text-[16px] max-lg:hidden" href="/signup">
-          <p className="leading-3">Sign Up</p>
-        </a>
-        <a className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold bg-orange text-white text-[16px] max-lg:hidden" href="/login">
-          <p className="leading-3">Login</p>
-        </a>
+        {sessionStorage.getItem("auth_hash") ? (
+          ""
+        ) : (
+          <a
+            className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold bg-white text-[16px] max-lg:hidden"
+            href="/signup"
+          >
+            <p className="leading-3">Sign Up</p>
+          </a>
+        )}
+        {sessionStorage.getItem("auth_hash") ? (
+          ""
+        ) : (
+          <a
+            className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold bg-orange text-white text-[16px] max-lg:hidden"
+            href="/login"
+          >
+            <p className="leading-3">Login</p>
+          </a>
+        )}
       </div>
     </div>
   );

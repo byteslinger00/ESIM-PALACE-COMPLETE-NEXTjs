@@ -1,17 +1,23 @@
 "use client";
 import { Logo } from "@/components/SignUp/Logo";
-import { OrangeButton } from "@/components/elements/common/OrangeButton";
-import Image from "next/image";
+import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { TextInput } from "@/components/SignUp/TextInput";
+import { LoginByID } from "@/actions/Login/loginById";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const [email, setEmail] = useState('');
+  const [id, setID] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
   const onGoogleBtnClicked = () => {
     signIn("google");
   };
+  const clickLogin = async () => {
+    let data = await LoginByID(toast,id,password);
+    if(data.customer_authenticated) router.push('/')
+  }
   return (
     <main className="mt-[180px] relative">
       <div className="mx-9 grid xl:grid-cols-2 grid-cols-1">
@@ -21,9 +27,9 @@ export default function Page() {
               Log In
             </h1>
             <TextInput
-              value={email}
-              setValue={setEmail}
-              placeholder="info@example.com"
+              value={id}
+              setValue={setID}
+              placeholder="User ID"
               type="text"
             />
             <TextInput
@@ -43,7 +49,7 @@ export default function Page() {
                 Privacy Policy.
               </a>
             </div>
-            <button className="py-6 px-9 md:max-w-[245px] md:text-[18px] text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold">
+            <button className="py-6 px-9 md:max-w-[245px] md:text-[18px] text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold" onClick={clickLogin}>
               <p className="md:leading-[13px] leading-[11px]">Log In</p>
             </button>
             <p className="md:text-[18px] text-[14px] max-md:mx-auto">
