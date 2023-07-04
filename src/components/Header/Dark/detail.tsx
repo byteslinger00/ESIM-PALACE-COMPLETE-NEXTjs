@@ -3,12 +3,9 @@ import useParticipantStore from "@/store/use-participant";
 import Image from "next/image";
 import {BiUser} from 'react-icons/bi'
 
-interface props {
-  is_Logged: boolean;
-}
-export const Detail: React.FC<props> = ({ is_Logged }) => {
-  const { showSideBar } = useParticipantStore((state) => state);
-  if (is_Logged === true)
+export const Detail: React.FC = () => {
+  const { is_logged, showSideBar } = useParticipantStore((state) => state);
+  if (is_logged === true)
     return (
       <button
         className="my-auto w-10 h-10 p-[10px] border-[1px] border-[#E3E3E3] rounded-full text-dark-solid"
