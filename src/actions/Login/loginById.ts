@@ -1,3 +1,4 @@
+'use client'
 import { token } from "@/utils/token";
 
 export const LoginByID = async (toast: any, customer_id: string, password: string) => {
@@ -18,8 +19,10 @@ export const LoginByID = async (toast: any, customer_id: string, password: strin
         );
         const response = await res.json();
         if (res.ok === false) throw response.detail;
-        if(response.customer_authenticated === true)
-            toast.success("Login success"), sessionStorage.setItem('auth_hash',response.get_session_auth_hash)
+        if (response.customer_authenticated === true)
+        {
+            toast.success("Login success");
+        }
         return response;
     } catch (error) {
         toast.error(error)

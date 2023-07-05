@@ -1,7 +1,4 @@
-import { TableSection } from "@/components/Sections/About/TableSection";
 import { Section3 } from "@/components/Sections/Contact/Section3";
-import { Footer } from "@/components/elements/common/Footer";
-import { DownloadESIM } from "@/components/Sections/DownloadESIM";
 import { Section1 } from "@/components/Sections/Section1";
 import { Section2 } from "@/components/Sections/Section2";
 import { contact } from "@/utils/page-description";

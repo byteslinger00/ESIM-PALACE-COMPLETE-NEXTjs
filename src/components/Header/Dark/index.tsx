@@ -5,12 +5,16 @@ import { Nav } from "./nav";
 import useParticipantStore from "@/store/use-participant";
 import { useEffect, useState } from "react";
 import { Detail } from "./detail";
+import { getCookie } from "cookies-next";
+import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
 
 export const Header = () => {
   const { is_logged, setLogged } = useParticipantStore((state) => state);
 
   useEffect(() => {
-    if (sessionStorage.getItem("auth_hash")) setLogged(true);
+    const user_info = GetUserInfoFromCookie(getCookie('user_info'));
+    if(user_info?.customer_authenticated === true)
+      setLogged(true);
   }, [setLogged]);
 
   return (

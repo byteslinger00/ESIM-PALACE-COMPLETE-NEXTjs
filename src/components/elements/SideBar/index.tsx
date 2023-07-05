@@ -1,10 +1,10 @@
 import useParticipantStore from "@/store/use-participant";
 import Image from "next/image";
 import { SideBarItem } from "./SideBarItem";
-import { RiUserSettingsLine, RiHomeOfficeLine } from "react-icons/ri";
+import { RiUserSettingsLine, RiHomeOfficeLine, RiUserAddLine } from "react-icons/ri";
 import { LuPackageOpen, LuHelpCircle } from "react-icons/lu";
 import { MdSupportAgent } from "react-icons/md";
-import { TbAffiliate, TbLogout2 } from "react-icons/tb";
+import { TbAffiliate, TbLogout2, TbLogin } from "react-icons/tb";
 import { GrContact } from "react-icons/gr";
 
 export const SideBar = () => {
@@ -78,6 +78,24 @@ export const SideBar = () => {
             href="#"
             title="Sign Out"
             icon={<TbLogout2 size={18} className="my-auto" />}
+          />
+        ) : (
+          ""
+        )}
+        {!is_logged ? (
+          <SideBarItem
+            href="/signup"
+            title="Sign Up"
+            icon={<TbLogin size={18} className="my-auto" />}
+          />
+        ) : (
+          ""
+        )}
+        {!is_logged ? (
+          <SideBarItem
+            href="/login"
+            title="Login"
+            icon={<RiUserAddLine size={18} className="my-auto" />}
           />
         ) : (
           ""

@@ -4,7 +4,8 @@ import useParticipantStore from "@/store/use-participant";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-
+import { signOut } from "next-auth/react";
+import { deleteCookie } from "cookies-next";
 interface props {
   href: string;
   title: string;
@@ -14,9 +15,10 @@ interface props {
 export const SideBarItem: React.FC<props> = ({ href, title, icon }) => {
   const { setLogged, showSideBar } = useParticipantStore((state) => state);
   const router = useRouter();
-  const clickSignOut = () => {
+  const clickSignOut = async () => {
     showSideBar(false);
-    sessionStorage.removeItem("auth_hash");
+    signOut();
+    deleteCookie('user_info')
     setLogged(false);
   };
   if (href !== "#")
