@@ -2,14 +2,19 @@
 import Image from "next/image";
 import { Nav } from "./nav";
 import useParticipantStore from "@/store/use-participant";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Detail } from "./detail";
+import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
+import { getCookie } from "cookies-next";
+import { user_info } from "@/types/userinfo.type";
 
 export const Header = () => {
   const { is_logged, setLogged } = useParticipantStore((state) => state);
  
   useEffect(() => {
-    if (sessionStorage.getItem("auth_hash")) setLogged(true);
+    const user_info:user_info = GetUserInfoFromCookie(getCookie('user_info'));
+    if(user_info?.customer_authenticated === true)
+      setLogged(true)
   }, [setLogged]);
 
   return (

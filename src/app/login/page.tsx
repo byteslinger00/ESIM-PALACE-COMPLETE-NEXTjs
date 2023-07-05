@@ -7,6 +7,7 @@ import { TextInput } from "@/components/SignUp/TextInput";
 import { LoginByID } from "@/actions/Login/loginById";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/elements/common/Spinner";
+import { setCookie } from "cookies-next";
 
 export default function Page() {
   const [id, setID] = useState("");
@@ -15,10 +16,12 @@ export default function Page() {
   const [is_Loading, setLoading] = useState(false);
   const onGoogleBtnClicked = () => {
     signIn("google");
+    
   };
   const clickLogin = async () => {
     setLoading(true);
     let data = await LoginByID(toast, id, password);
+    setCookie('user_info', JSON.stringify(data));
     setLoading(false);
     if (data.customer_authenticated) router.push("/");
   };

@@ -15,11 +15,23 @@ const authOptions: any = {
                 signOut: '/auth/signout',
             },
             callbacks: {
-                // async session({ session }: any) {
-                //         return Promise.resolve(session);
-                // },
                 async signIn({ user }: any) {
                     try {
+                        // const res = await fetch(
+                        //     "https://test.esimplified.io/customer/esimpalace/api/customer_sign_in/",
+                        //     {
+                        //         method: "POST",
+                        //         headers: {
+                        //             "Content-Type": "application/json",
+                        //             Authorization: token,
+                        //         },
+                        //         body: JSON.stringify({
+                        //             customer_id,
+                        //             password,
+                        //         }),
+                        //     }
+                        // );
+                        // const response = await res.json();
                         return Promise.resolve(true);
                     } catch (err) {
                         return Promise.reject(new Error(SERVER_ERR_MSG));
