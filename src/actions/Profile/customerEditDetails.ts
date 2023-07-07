@@ -26,6 +26,7 @@ export const CustomerEditDetails = async (toast: any, currentId: string, full_na
         );
         const response = await res.json();
         if (res.ok === false) throw response.detail;
+        toast.success('Profile edited successfully!')
         return response;
     } catch (error) {
         toast.error(error)

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 
 interface props {
@@ -13,8 +14,10 @@ export const Category:React.FC<props> = ({type, description}) => {
               src={`/assets/Homepage/Ellements/${type}.png`}
               width={150}
               height={220}
-              alt=""
-              className="mx-3"
+              alt="category image"
+              className='mx-3'
+              style={{width:'auto',height: 'auto'}}
+              
             />
             <p className="font-montserrat font-semibold text-[19px]">
               {description}
