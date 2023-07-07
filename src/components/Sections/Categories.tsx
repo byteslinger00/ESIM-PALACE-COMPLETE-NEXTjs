@@ -7,7 +7,7 @@ export const Categories = () => {
         How eSim Palace works
       </p>
       <div className="relative mt-[60px] grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10">
-        <div className="absolute z-[-10] mt-[140px] mx-[80px] w-[80%] h-1 bg-[#DEEDF8] max-xl:hidden" />
+        <div className="absolute z-[-10] mt-[160px] mx-[80px] w-[80%] h-1 bg-[#DEEDF8] max-xl:hidden" />
         <Category type="01" description="Choose a Country And Plan" />
         <Category type="02" description="Scan Your QR code" />
         <Category type="03" description="Use Your Phone" />

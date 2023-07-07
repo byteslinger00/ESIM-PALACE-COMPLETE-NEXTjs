@@ -8,6 +8,7 @@ import { LoginByID } from "@/actions/Login/loginById";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { setCookie } from "cookies-next";
+import { SendForgotPassword } from "@/actions/Login/sendForgotPassword";
 
 export default function Page() {
   const [id, setID] = useState("");
@@ -18,6 +19,7 @@ export default function Page() {
     signIn("google");
     
   };
+
   const clickLogin = async () => {
     setLoading(true);
     let data = await LoginByID(toast, id, password);
@@ -25,6 +27,15 @@ export default function Page() {
     setLoading(false);
     if (data.customer_authenticated) router.push("/");
   };
+
+  const clickForgotPassword = async () => {
+    if(!id){
+      toast.error("Enter your email id");
+      return;
+    }
+    SendForgotPassword(toast,id)
+  }
+
   return (
     <main className="mt-[180px]">
       {is_Loading ? (
@@ -69,8 +80,10 @@ export default function Page() {
             >
               <p className="md:leading-[13px] leading-[11px]">Log In</p>
             </button>
+            <button className="underline text-left cursor-pointer w-[200px]" onClick={clickForgotPassword}>Forgot password?</button>
+            <hr/>
             <p className="md:text-[18px] text-[14px] max-md:mx-auto">
-              Or Sign Up Using
+              Or Sign In Using
             </p>
             <div className="flex flex-row gap-4 max-md:mx-auto">
               <button>
