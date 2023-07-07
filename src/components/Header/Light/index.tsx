@@ -21,7 +21,7 @@ export const Header = () => {
     <div className="absolute w-full h-25 px-[300px] top-0 flex flex-row py-5 mx-medium:px-6">
       <div className="w-20 grow">
         <Image
-          src="/assets/light-logo.png"
+          src="/assets/light-logo.svg"
           width={80}
           height={60}
           alt="logo"

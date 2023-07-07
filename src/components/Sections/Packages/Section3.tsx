@@ -92,7 +92,7 @@ export const Section3 = () => {
           <option value="Middle East">Middle East</option>
           <option value="North America">North America</option>
           <option value="Oceania">Oceania</option>
-          <option value="Global">Globa</option>
+          <option value="Global">Global</option>
         </select>
         <Search />
       </div>

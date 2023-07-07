@@ -1,3 +1,4 @@
+import useParticipantStore from "@/store/use-participant";
 import { checkFlag } from "@/utils/checkFlag";
 import Image from "next/image"
 import { FlagIcon, FlagIconCode } from 'react-flag-kit';
@@ -15,6 +16,7 @@ interface props {
 }
 
 export const DetailCard: React.FC<props> = ({ country_code, country_name, data, validity, plan, currency, price, id, showData }) => {
+    const { is_logged } = useParticipantStore((state) => state);
     return (
         <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
             <div className="flex flex-row">
@@ -61,8 +63,9 @@ export const DetailCard: React.FC<props> = ({ country_code, country_name, data, 
                 </div>
             </div>
             <button
-                className="bg-white text-black w-full mt-7 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg"
+                className="bg-white text-black w-full mt-7 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg disabled:hidden"
                 onClick={() => showData(id)}
+                disabled={!is_logged}
             >
                 {currency}{price} - Buy Now
             </button>

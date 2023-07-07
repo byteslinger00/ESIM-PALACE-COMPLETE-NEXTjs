@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { Property } from "../common/Property";
-import { Counter } from "./Counter";
 import { OrangeButton } from "../common/OrangeButton";
 import { Properties } from "./SimProperty";
 import { packages } from "@/types/packages.type";
@@ -61,7 +60,6 @@ export const Modal: React.FC<props> = ({ showModal }) => {
                 {selected_package.currency}
                 {selected_package.price}
               </p>
-              <Counter />
             </div>
             <div className="flex flex-row gap-3">
               <input type="checkbox" className="w-[24px] h-[24px] my-auto" />

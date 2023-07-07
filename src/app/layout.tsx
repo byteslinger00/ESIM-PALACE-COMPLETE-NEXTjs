@@ -15,13 +15,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { is_sidebar } = useParticipantStore((state) => state);
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        <link rel="shortcut icon" href="/assets/dark-logo.svg" />
+      </head>
       <body
         className="min-h-screen"
         style={is_sidebar ? { overflow: "hidden" } : { overflow: "auto" }}
       >
         <NextAuthProvider>
-          <ToastContainer hideProgressBar/>
+          <ToastContainer hideProgressBar />
           {children}
           <Footer />
           {is_sidebar ? <SideBar /> : ""}

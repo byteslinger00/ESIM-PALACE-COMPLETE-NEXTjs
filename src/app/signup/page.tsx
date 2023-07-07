@@ -4,12 +4,11 @@ import { toast } from "react-toastify";
 import { Logo } from "@/components/SignUp/Logo";
 import { TextInput } from "@/components/SignUp/TextInput";
 import { signup_validate } from "@/utils/validation";
-import { SignUpByEmail } from "@/actions/Signup/signUpByEmail";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/elements/common/Spinner";
+import { SignUpByEmail } from "@/actions/Signup/signUpByEmail";
 
 export default function Page() {
-  const [id, setID] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,9 +17,9 @@ export default function Page() {
   const router = useRouter();
 
   const clickSignUp = async () => {
-    if (signup_validate(toast, id, name, email, phone, password)) return;
+    if (signup_validate(toast, name, email, phone, password)) return;
     setLoading(true);
-    let res = await SignUpByEmail(toast, id, name, email, password);
+    let res = await SignUpByEmail(toast, name, email, password, phone);
     setLoading(false);
     if (res) router.push("/login");
   };
@@ -40,12 +39,6 @@ export default function Page() {
             <h1 className="md:text-[48px] text-[30px] font-montserrat2xl text-center mb-[10px]">
               Sign Up
             </h1>
-            <TextInput
-              value={id}
-              setValue={setID}
-              placeholder="User ID"
-              type="text"
-            />
             <TextInput
               value={name}
               setValue={setName}
