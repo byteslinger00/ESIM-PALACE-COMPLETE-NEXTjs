@@ -6,26 +6,39 @@ import { getCookie } from "cookies-next";
 import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
 import { user_info } from "@/types/userinfo.type";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { signup_validate } from "@/utils/validation";
+import { CustomerEditDetails } from "@/actions/Profile/customerEditDetails";
 
 export const Section4 = () => {
-
   const [currentID, setCurrentID] = useState("");
-  const [newID, setNewID] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [is_Loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
-    const user_info:user_info = GetUserInfoFromCookie(getCookie("user_info"));
-    if(user_info === undefined) {router.push('/'); return;}
+    const user_info: user_info = GetUserInfoFromCookie(getCookie("user_info"));
+    if (user_info === undefined) {
+      router.push("/");
+      return;
+    }
     setCurrentID(user_info.customer_details.customer_id);
     setFullName(user_info.customer_details.full_name);
     setEmail(user_info.customer_details.email);
     setPhone(user_info.customer_details.phone_number);
   }, [router, setCurrentID, setFullName]);
+
+  const clickSave = async () => {
+    console.log(currentID)
+    if (signup_validate(toast, fullName, email, phone, password)) return;
+    setLoading(true);
+    await CustomerEditDetails(toast, currentID, fullName, email, password, phone);
+    setLoading(false);
+  };
 
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 md:py-[135px] py-[40px] text-dark-solid text-center bg-light-solid">
@@ -33,22 +46,6 @@ export const Section4 = () => {
         Your Profile
       </h1>
       <div className="bg-white lg:rounded-[32px] rounded-[10px] grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-[15px] lg:px-20 lg:py-20 px-5 py-5">
-        <TextInput
-          type="text"
-          header="Current ID*"
-          placeholder="User ID"
-          disabled={true}
-          value={currentID}
-          setValue={setCurrentID}
-        />
-        <TextInput
-          type="text"
-          header="New ID*"
-          placeholder="User ID"
-          disabled={false}
-          value={newID}
-          setValue={setNewID}
-        />
         <TextInput
           type="text"
           header="Full Name*"
@@ -74,14 +71,14 @@ export const Section4 = () => {
           setValue={setPhone}
         />
         <TextInput
-          type="text"
+          type="password"
           header="Current Password*"
           placeholder="**** **** ****"
           disabled={false}
           value={password}
           setValue={setPassword}
         />
-        <div className="md:col-span-2">
+        <div className="md:col-span-2" onClick={clickSave}>
           <OrangeButton text="Save Profile" />
         </div>
       </div>

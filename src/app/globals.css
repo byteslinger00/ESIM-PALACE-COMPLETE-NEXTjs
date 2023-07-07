@@ -90,7 +90,11 @@ p {
     "A3 A3 A3 A3 A3"
     "A4 A4 A4 A4 A4"
     "A5 A5 A5 A5 A5"
-    "A6 A6 A6 A6 A6";
+    "A6 A6 A6 A6 A6"
+    "A7 A7 A7 A7 A7"
+    "A8 A8 A8 A8 A8"
+    "A9 A9 A9 A9 A9"
+    "A10 A10 A10 A10 A10";
   grid-gap: 30px;
 }
 
@@ -186,7 +190,11 @@ p {
       "B3 B3"
       "B4 B4"
       "B5 B5"
-      "B6 B6";
+      "B6 B6"
+      "B7 B7"
+      "B8 B8"
+      "B9 B9"
+      "B10 B10";
     grid-gap: 30px;
   }
 
@@ -221,6 +229,26 @@ p {
 
   .grid-A6 {
     grid-area: B6;
+    grid-column: span 2;
+  }
+
+  .grid-A7 {
+    grid-area: B7;
+    grid-column: span 2;
+  }
+
+  .grid-A8 {
+    grid-area: B8;
+    grid-column: span 2;
+  }
+
+  .grid-A9 {
+    grid-area: B9;
+    grid-column: span 2;
+  }
+
+  .grid-A10 {
+    grid-area: B10;
     grid-column: span 2;
   }
 }

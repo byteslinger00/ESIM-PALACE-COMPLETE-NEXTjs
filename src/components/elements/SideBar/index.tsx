@@ -24,7 +24,7 @@ export const SideBar = () => {
       >
         <div>
           <Image
-            src="/assets/dark-logo.png"
+            src="/assets/dark-logo.svg"
             width={80}
             height={60}
             alt="logo"
@@ -86,7 +86,7 @@ export const SideBar = () => {
           <SideBarItem
             href="/signup"
             title="Sign Up"
-            icon={<TbLogin size={18} className="my-auto" />}
+            icon={<RiUserAddLine size={18} className="my-auto" />}
           />
         ) : (
           ""
@@ -95,7 +95,7 @@ export const SideBar = () => {
           <SideBarItem
             href="/login"
             title="Login"
-            icon={<RiUserAddLine size={18} className="my-auto" />}
+            icon={<TbLogin size={18} className="my-auto" />}
           />
         ) : (
           ""

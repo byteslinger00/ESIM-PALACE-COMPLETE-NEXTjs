@@ -1,6 +1,6 @@
 import { token } from "@/utils/token";
 
-export const SignUpByEmail = async (toast: any,customer_id: string, full_name: string, email: string, password: string,  ) => {
+export const SignUpByEmail = async (toast: any, full_name: string, email: string, password: string, phone_number: string ) => {
     let first_name = full_name.split(' ')[0];
     let last_name = full_name.split(' ')[1];
     try {
@@ -15,9 +15,10 @@ export const SignUpByEmail = async (toast: any,customer_id: string, full_name: s
             body: JSON.stringify({
               email,
               password,
-              customer_id,
+              customer_id: email,
               first_name,
               last_name,
+              phone_number,
               full_name
             }),
           }

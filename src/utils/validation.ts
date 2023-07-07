@@ -12,10 +12,8 @@ const validPhone = (phoneNumber: string) => {
     else return false;
 }
 
-export const signup_validate = (toast: any, id: string, name: string, email: string, phone: string, password: string) => {
+export const signup_validate = (toast: any, name: string, email: string, phone: string, password: string) => {
     let error = false;
-    if (id.length === 0)
-        toast.error("ID is required."), error = true;
     if (name.length === 0)
         toast.error("Name is required."), error = true;
     if (!validEmail(email))
