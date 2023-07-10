@@ -1,17 +1,21 @@
-export const Roaming = () => {
+interface props {
+    iccid?: string;
+    country?: string;
+}
+export const Roaming:React.FC<props> = ({iccid, country}) => {
     return (
         <div className="flex flex-col gap-8 font-montserrat lg:text-[20px] text-[16px]">
             <p className="font-montserratbold lg:text-[24px] text-[16px]">Connect to wifi Scan QR Code Enable data roaming</p>
             <div className="flex flex-col gap-2 bg-[#EBF6FF] p-10 text-left rounded-[24px]">
                 <div className="">
-                    <span className="font-montserratbold">ICCID: </span>xxxxxxxxxxxxxxxxxxxxxxxxxx
+                    <span className="font-montserratbold">ICCID: </span>{iccid}
                 </div>
-                <div className="">
+                {/* <div className="">
                     <span className="font-montserratbold">Serial Nmber: </span>xxxxxxxxxxxxxx
-                </div>
+                </div> */}
                 <hr className="border-[#A5D6FF]" />
                 <div className="">
-                    <span className="font-montserratbold">Coverage: </span>Country
+                    <span className="font-montserratbold">Coverage: </span>{country}
                 </div>
                 <hr className="border-[#A5D6FF]" />
                 <p className="">
