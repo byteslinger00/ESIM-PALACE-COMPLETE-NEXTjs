@@ -14,14 +14,17 @@ import { getCookie } from "cookies-next";
 import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
 import QRCode from "react-qr-code";
 import { transaction } from "@/types/transaction.type";
+import { Spinner } from "@/components/elements/common/Spinner";
 
 export const Section3 = () => {
   const { selected_package } = useParticipantStore((state) => state);
   const [transactionData, setData] = useState<transaction>();
   const [selected_type, setType] = useState(false);
+  const [is_Loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const user_info = GetUserInfoFromCookie(getCookie("user_info"));
       let data: transaction = await buyEsimById(
         user_info.customer_details.customer_id,
@@ -29,7 +32,9 @@ export const Section3 = () => {
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
+      console.log(data);
       setData(data);
+      setLoading(false);
     })();
   }, [selected_package?.package_type_id]);
 
@@ -46,6 +51,7 @@ export const Section3 = () => {
 
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[40px] bg-white text-dark-solid text-center flex flex-col gap-10">
+      {is_Loading ? <Spinner /> : ""}
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
         <div className="flex flex-col gap-[60px]">
           <div className="flex flex-row gap-4">
@@ -112,11 +118,11 @@ export const Section3 = () => {
         </div>
         <div className="max-lg:order-first">
           <Card
-            src="/assets/Transaction Page/Image/Frame 1000007080.png"
-            title="China(Hong Kong)"
-            size={1}
-            price={5.0}
-            subtotal={5.0}
+            country={selected_package?.country_code}
+            title={selected_package?.country_name}
+            size={selected_package?.data_GB}
+            price={Number(selected_package?.price)}
+            subtotal={Number(selected_package?.price)}
             discount={1.0}
           />
         </div>
