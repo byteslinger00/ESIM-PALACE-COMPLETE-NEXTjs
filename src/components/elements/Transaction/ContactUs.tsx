@@ -7,9 +7,9 @@ export const ContactUs = () => {
                 <a className="text-[#081B2782] m-auto max-lg:flex max-lg:flex-col" href="/contact" ><span className="font-montserratbold text-dark-solid">Need help? </span>Contact us</a>
             </div>
 
-            <div className="lg:float-right">
+            <a href="/packages" className="lg:float-right">
                 <Button title="Continue shopping" color="#F2B21B" />
-            </div>
+            </a>
         </div>
     )
 }

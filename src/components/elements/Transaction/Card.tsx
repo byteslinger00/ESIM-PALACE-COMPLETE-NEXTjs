@@ -11,8 +11,8 @@ interface props {
 
 export const Card: React.FC<props> = ({ src, title, size, price, subtotal, discount }) => {
     return (
-        <div className="p-10 bg-[#F9F7F7] rounded-[14px] flex flex-col gap-8 xl:text-[24px] text-[16px] text-left">
-            <div className="flex flex-row gap-6 font-montserrat">
+        <div className="sm:p-10 p-2 bg-[#F9F7F7] rounded-[14px] flex flex-col gap-8 xl:text-[24px] text-[16px] text-left">
+            <div className="flex flex-row sm:gap-6 gap-4 font-montserrat">
                 <Image src={src} width={150} height={100} alt="Country Card" className='max-xl:w-[120px]'/>
                 <p className='font-hellix grow m-auto'>{title}</p>
                 <p className='font-montserratbold m-auto'>{size}GB</p>
