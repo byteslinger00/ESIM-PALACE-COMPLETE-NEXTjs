@@ -84,11 +84,10 @@ export default function Page() {
             <p className="md:text-[18px] text-[14px] max-md:mx-auto">
               Or Sign Up Using
             </p>
-            <div className="flex flex-row gap-4 max-md:mx-auto">
+            {/* <div className="flex flex-row gap-4 max-md:mx-auto">
               <Logo type="Apple" />
-              <Logo type="Facebook" />
               <Logo type="Google" />
-            </div>
+            </div> */}
             <hr className="border-[#DDDDDD]" />
             <div className="md:text-[18px] text-[14px] max-md:text-center">
               Already have an account?

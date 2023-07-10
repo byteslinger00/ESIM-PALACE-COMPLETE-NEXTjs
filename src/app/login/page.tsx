@@ -15,10 +15,10 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [is_Loading, setLoading] = useState(false);
-  const onGoogleBtnClicked = () => {
-    signIn("google");
+  // const onGoogleBtnClicked = () => {
+  //   signIn("google");
     
-  };
+  // };
 
   const clickLogin = async () => {
     setLoading(true);
@@ -81,7 +81,7 @@ export default function Page() {
               <p className="md:leading-[13px] leading-[11px]">Log In</p>
             </button>
             <button className="underline text-left cursor-pointer w-[200px]" onClick={clickForgotPassword}>Forgot password?</button>
-            <hr/>
+            {/* <hr/>
             <p className="md:text-[18px] text-[14px] max-md:mx-auto">
               Or Sign In Using
             </p>
@@ -89,13 +89,10 @@ export default function Page() {
               <button>
                 <Logo type="Apple" />
               </button>
-              <button>
-                <Logo type="Facebook" />
-              </button>
               <button onClick={() => onGoogleBtnClicked()}>
                 <Logo type="Google" />
               </button>
-            </div>
+            </div> */}
             <hr className="border-[#DDDDDD]" />
           </div>
         </div>
