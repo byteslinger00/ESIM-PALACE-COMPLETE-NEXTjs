@@ -22,12 +22,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         className="min-h-screen"
         style={is_sidebar ? { overflow: "hidden" } : { overflow: "auto" }}
       >
-        <NextAuthProvider>
+        {/* <NextAuthProvider> */}
           <ToastContainer hideProgressBar />
           {children}
           <Footer />
           {is_sidebar ? <SideBar /> : ""}
-        </NextAuthProvider>
+        {/* </NextAuthProvider> */}
       </body>
     </html>
   );
