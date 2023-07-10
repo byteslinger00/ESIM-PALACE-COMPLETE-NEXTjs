@@ -37,7 +37,7 @@ export const Section3 = () => {
       setCountries([]);
       const data = await getCountriesByRegion(selectedRegion);
       if (data === false) {
-        toast.error("Invalid Region", {
+        toast.error("Connection Failed", {
           position: toast.POSITION.TOP_RIGHT,
         });
         setLoading(false);

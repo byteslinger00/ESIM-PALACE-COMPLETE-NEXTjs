@@ -3,18 +3,27 @@ import Image from "next/image";
 import { Property } from "../common/Property";
 import { OrangeButton } from "../common/OrangeButton";
 import { Properties } from "./SimProperty";
-import { packages } from "@/types/packages.type";
 import useParticipantStore from "@/store/use-participant";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";
 import { checkFlag } from "@/utils/checkFlag";
 import { SupportedCountries } from "./SimSupportedCountries";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface props {
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Modal: React.FC<props> = ({ showModal }) => {
+  
   const { selected_package } = useParticipantStore((state) => state);
+  const [is_accept, setAccept] = useState(false);
+  const router = useRouter();
+  
+  const handleClickBuy = () => {
+    const url = '/transaction/'+selected_package?.package_type_id;
+    router.push(url);
+  }
   if (selected_package !== undefined)
     return (
       <div className="w-full h-full top-0 left-0 overscroll-contain block absolute">
@@ -31,7 +40,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
             className="absolute top-0 right-0 cursor-pointer xl:hidden"
             onClick={() => showModal(false)}
           />
-          <div className="bg-white flex flex-col gap-4 xl:min-w-[380px]">
+          <div className="bg-white flex flex-col gap-4 lg:min-w-[380px] min-w-[200px]">
             {checkFlag(selected_package.country_code) ? (
               <Image
                 src={`/assets/Region Flag/${selected_package.country_code}.jpg`}
@@ -62,15 +71,13 @@ export const Modal: React.FC<props> = ({ showModal }) => {
               </p>
             </div>
             <div className="flex flex-row gap-3">
-              <input type="checkbox" className="w-[24px] h-[24px] my-auto" />
+              <input type="checkbox" className="w-[24px] h-[24px] my-auto" onClick={()=>setAccept(!is_accept)}/>
               <p className="xl:text-[16px] text-[14px]">
                 I have read and accepted the terms of service and privacy
                 policy.
               </p>
             </div>
-            <a href={`/transaction/1`}>
-              <OrangeButton text="Buy Now" />
-            </a>
+            <OrangeButton disabled={!is_accept} text="Buy Now" onCLick={handleClickBuy}/>
           </div>
           <div className="bg-[#EBF6FF] p-10 whitespace-normal flex flex-col gap-10">
             <div className="flex flex-col gap-6">
@@ -87,7 +94,9 @@ export const Modal: React.FC<props> = ({ showModal }) => {
             </div>
             <div className="flex flex-col gap-4">
               <Properties title="Network" text="Proximius PLC" />
-              <SupportedCountries countries={selected_package.supported_countries}/>
+              <SupportedCountries
+                countries={selected_package.supported_countries}
+              />
             </div>
           </div>
         </div>
