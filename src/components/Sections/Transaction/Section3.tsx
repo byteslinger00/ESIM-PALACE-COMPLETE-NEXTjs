@@ -32,7 +32,6 @@ export const Section3 = () => {
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
-      console.log(data);
       setData(data);
       setLoading(false);
     })();
@@ -68,66 +67,55 @@ export const Section3 = () => {
                 <p>Thanks Helex Mofidex</p>
               </div>
             </div>
-            <hr className="border-[#DDDDDD]" />
-            <div className="flex flex-row gap-8 max-lg:mx-auto">
-              <Button
-                title="QR code"
-                color="#FFECBE"
-                selectedColor="#F2B21B"
-                selected={!selected_type}
-                onClick={() => handleClickType("qr_code")}
-              />
-              <Button
-                title="Manual"
-                color="#FFECBE"
-                selectedColor="#F2B21B"
-                selected={selected_type}
-                onClick={() => handleClickType("manual")}
-              />
-            </div>
-            {selected_type ? (
-              <p className="text-[25px]">{transactionData?.qr_code}</p>
-            ) : (
-              <QRCode
-                size={256}
-                style={{
-                  height: "auto",
-                  maxWidth: "300px",
-                  width: "300px",
-                  margin: "auto",
-                }}
-                value={transactionData?.qr_code ? transactionData?.qr_code : ""}
-                viewBox={`0 0 256 256`}
-              />
-            )}
-
-            {/* Integrate With API */}
-            <Roaming
-              iccid={transactionData?.iccid}
-              country={transactionData?.country_name}
-            />
-            <Reload />
-            <Info
-              full_name={transactionData?.request.full_name}
-              email={transactionData?.request.email}
-              phone_number={transactionData?.request.phone_number}
-            />
-            <ContactUs />
-            <hr className="border-[#DDDDDD] max-lg:hidden" />
-            <p className="font-montserrat text-[18px] text-left max-lg:hidden">
-              Purchase options cancellation policy
-            </p>
           </div>
-          <div className="max-lg:order-first">
-            <Card
-              country={selected_package?.country_code}
-              title={selected_package?.country_name}
-              size={selected_package?.data_GB}
-              price={Number(selected_package?.price)}
-              subtotal={Number(selected_package?.price)}
-              discount={1.0}
+          <hr className="border-[#DDDDDD]" />
+          <div className="flex flex-row gap-8 max-lg:mx-auto">
+            <Button
+              title="QR code"
+              color="#FFECBE"
+              selectedColor="#F2B21B"
+              selected={!selected_type}
+              onClick={() => handleClickType("qr_code")}
+            />
+            <Button
+              title="Manual"
+              color="#FFECBE"
+              selectedColor="#F2B21B"
+              selected={selected_type}
+              onClick={() => handleClickType("manual")}
             />
           </div>
+          {selected_type ? (
+            <p className="text-[25px]">{transactionData?.qr_code}</p>
+          ) : (
+            <QRCode
+              size={256}
+              style={{
+                height: "auto",
+                maxWidth: "300px",
+                width: "300px",
+                margin: "auto",
+              }}
+              value={transactionData?.qr_code ? transactionData?.qr_code : ""}
+              viewBox={`0 0 256 256`}
+            />
+          )}
+          {/* Integrate With API */}
+          <Roaming
+            iccid={transactionData?.iccid}
+            country={transactionData?.country_name}
+          />
+          <Reload />
+          <Info
+            full_name={transactionData?.request.full_name}
+            email={transactionData?.request.email}
+            phone_number={transactionData?.request.phone_number}
+          />
+          <ContactUs />
+          <hr className="border-[#DDDDDD] max-lg:hidden" />
+          <p className="font-montserrat text-[18px] text-left max-lg:hidden">
+            Purchase options cancellation policy
+          </p>
         </div>
       )}
     </section>
