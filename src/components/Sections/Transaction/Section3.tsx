@@ -50,19 +50,22 @@ export const Section3 = () => {
 
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[40px] bg-white text-dark-solid text-center flex flex-col gap-10">
-      {is_Loading ? <Spinner /> : ""}
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
-        <div className="flex flex-col gap-[60px]">
-          <div className="flex flex-row gap-4">
-            <Image
-              src="/assets/Transaction Page/Icons/Check mark.svg"
-              width={64}
-              height={64}
-              alt="Check Mark"
-            />
-            <div className="lg:text-[24px] text-[20px] grid grid-rows-2 font-montserratbold text-left">
-              <p>Order #{transactionData?.order_number}</p>
-              <p>Thanks Helex Mofidex</p>
+      {is_Loading ? (
+        <Spinner />
+      ) : (
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
+          <div className="flex flex-col gap-[60px]">
+            <div className="flex flex-row gap-4">
+              <Image
+                src="/assets/Transaction Page/Icons/Check mark.svg"
+                width={64}
+                height={64}
+                alt="Check Mark"
+              />
+              <div className="lg:text-[24px] text-[20px] grid grid-rows-2 font-montserratbold text-left">
+                <p>Order #{transactionData?.order_number}</p>
+                <p>Thanks Helex Mofidex</p>
+              </div>
             </div>
           </div>
           <hr className="border-[#DDDDDD]" />
@@ -114,17 +117,7 @@ export const Section3 = () => {
             Purchase options cancellation policy
           </p>
         </div>
-        <div className="max-lg:order-first">
-          <Card
-            country={selected_package?.country_code}
-            title={selected_package?.country_name}
-            size={selected_package?.data_GB}
-            price={Number(selected_package?.price)}
-            subtotal={Number(selected_package?.price)}
-            discount={1.0}
-          />
-        </div>
-      </div>
+      )}
     </section>
   );
 };
