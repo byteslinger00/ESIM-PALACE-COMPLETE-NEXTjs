@@ -32,7 +32,6 @@ export const Section3 = () => {
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
-      console.log(data);
       setData(data);
       setLoading(false);
     })();
@@ -98,7 +97,6 @@ export const Section3 = () => {
               viewBox={`0 0 256 256`}
             />
           )}
-
           {/* Integrate With API */}
           <Roaming
             iccid={transactionData?.iccid}
