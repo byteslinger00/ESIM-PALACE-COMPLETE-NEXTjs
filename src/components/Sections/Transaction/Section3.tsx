@@ -15,6 +15,7 @@ import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
 import QRCode from "react-qr-code";
 import { transaction } from "@/types/transaction.type";
 import { Spinner } from "@/components/elements/common/Spinner";
+// import { shopifyClient, parseShopifyResponse } from '@/lib/shopify'
 export const Section3 = () => {
   const { selected_package } = useParticipantStore((state) => state);
   const [transactionData, setData] = useState<transaction>();
@@ -25,13 +26,15 @@ export const Section3 = () => {
     (async () => {
       setLoading(true);
       const user_info = GetUserInfoFromCookie(getCookie("user_info"));
-      let data: transaction = await buyEsimById(
+      let data = await buyEsimById(
         user_info.customer_details.customer_id,
         selected_package?.package_type_id,
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
       console.log(data);
+      if(data === false)
+        return;
       setData(data);
       setLoading(false);
     })();
@@ -48,12 +51,19 @@ export const Section3 = () => {
     }
   };
 
+  const handlClickGet = async () => {
+    // const products = await shopifyClient.product.fetchAll();
+    // const data = parseShopifyResponse(products);
+    // console.log(data);
+    console.log('Shopify');
+  }
+
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[40px] bg-white text-dark-solid text-center flex flex-col gap-10">
-      {is_Loading ? <Spinner /> : ""}
-      <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
+      {is_Loading ? <Spinner /> : <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
         <div className="flex flex-col gap-[60px]">
           <div className="flex flex-row gap-4">
+            <button className="bg-black w-[150px]" onClick={async () => await handlClickGet()}>Get</button>
             <Image
               src="/assets/Transaction Page/Icons/Check mark.svg"
               width={64}
@@ -97,7 +107,7 @@ export const Section3 = () => {
               viewBox={`0 0 256 256`}
             />
           )}
-          
+
           {/* Integrate With API */}
           <Roaming
             iccid={transactionData?.iccid}
@@ -125,7 +135,8 @@ export const Section3 = () => {
             discount={1.0}
           />
         </div>
-      </div>
+      </div>}
+
     </section>
   );
 };
