@@ -1,13 +1,17 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from 'next-auth/providers/apple';
 const SERVER_ERR_MSG = "Something went wrong in a server."
-console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 const authOptions: any = {
             providers: [
                 GoogleProvider({
                     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
                     clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || '',
                 }),
+                AppleProvider({
+                    clientId: process.env.NEXT_PUBLIC_APPLE_ID || '',
+                    clientSecret: process.env.NEXT_PUBLIC_APPLE_SECRET || ''
+                  })
             ],
             pages: {
                 error: "/",

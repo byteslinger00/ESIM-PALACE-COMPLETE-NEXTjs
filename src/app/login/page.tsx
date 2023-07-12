@@ -19,6 +19,10 @@ export default function Page() {
     signIn("google");
     
   };
+  const onAppleBtnClicked = () => {
+    signIn("apple");
+    
+  };
 
   const clickLogin = async () => {
     setLoading(true);
@@ -86,10 +90,10 @@ export default function Page() {
               Or Sign In Using
             </p>
             <div className="flex flex-row gap-4 max-md:mx-auto">
-              <button>
+              <button onClick={onAppleBtnClicked}>
                 <Logo type="Apple" />
               </button>
-              <button onClick={() => onGoogleBtnClicked()}>
+              <button onClick={onGoogleBtnClicked}>
                 <Logo type="Google" />
               </button>
             </div>
