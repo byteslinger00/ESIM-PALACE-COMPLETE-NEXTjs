@@ -18,9 +18,6 @@ import { details } from "@/types/details.type";
 import { packages } from "@/types/packages.type";
 import { motion } from "framer-motion";
 import { card_container, card_item } from "@/utils/animations";
-import createCheckout from "@/actions/Shopify/createCheckout";
-import {getProducts} from '@/lib/shopify'
-import { create } from "domain";
 
 export const Section3 = () => {
   const [is_modal, showModal] = useState(false);
@@ -31,11 +28,7 @@ export const Section3 = () => {
   const [selected_country, setCountry] = useState("");
   const [details, setDetails] = useState<Array<details>>([]);
   const [detailsVisible, setVisible] = useState(false);
-  const handlClickGet = async () => {
-    const response = await createCheckout();
-    console.log('last response ');
-    console.log(response);
-  }
+
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -83,7 +76,6 @@ export const Section3 = () => {
   return (
     <section className="relative mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[135px] bg-[#F9F7F7] text-dark-solid text-center flex flex-col gap-10">
       {is_Loading ? <Spinner /> : ""}
-      <button className="bg-black w-[150px]" onClick={async () => await handlClickGet()}>Get</button>
       <SelectTab setRegion={setRegion} selectedRegion={selectedRegion} />
       <div className="flex flex-row gap-5">
         <select

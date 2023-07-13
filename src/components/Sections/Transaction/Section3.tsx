@@ -15,7 +15,7 @@ import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
 import QRCode from "react-qr-code";
 import { transaction } from "@/types/transaction.type";
 import { Spinner } from "@/components/elements/common/Spinner";
-import createCheckout from "@/actions/Shopify/createCheckout";
+
 export const Section3 = () => {
   const { selected_package } = useParticipantStore((state) => state);
   const [transactionData, setData] = useState<transaction>();
@@ -50,8 +50,6 @@ export const Section3 = () => {
         break;
     }
   };
-
-  
 
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 py-[40px] bg-white text-dark-solid text-center flex flex-col gap-10">
