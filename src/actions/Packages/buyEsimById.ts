@@ -2,7 +2,6 @@ import { token } from "@/utils/token";
 
 export default async function buyEsimById(customer_id: string, package_type_id: number | undefined, full_name: string, phone_number: string) {
   try {
-    console.log('====='+package_type_id)
     const first_name = full_name.split(' ')[0];
     const last_name = full_name.split(' ')[1];
     const res = await fetch(
@@ -26,7 +25,6 @@ export default async function buyEsimById(customer_id: string, package_type_id: 
     );
     if (res.ok === false) throw res.statusText;
     const response = await res.json();
-    console.log(response);
     return response;
   } catch (error) {
     return false;

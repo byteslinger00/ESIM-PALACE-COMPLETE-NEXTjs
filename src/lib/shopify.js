@@ -1,11 +1,27 @@
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
+import { gql, GraphQLClient } from "graphql-request";
+const endpoint  = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STORE_FRONT_ACCESS_TOKEN
 
-// import Client from 'shopify-buy';
-// export const shopifyClient = Client.buildClient({
-//   storefrontAccessToken: storefrontAccessToken,
-//   domain: domain,
-// });
+const graphQLClient = new GraphQLClient(endpoint, {
+  headers: {
+    "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
+  },
+});
+
+export async function getProducts() {
+  const getAllProductsQuery = gql`
+    {
+      Shop{
+        name
+      }
+    }
+  `;
+  try {
+    return await graphQLClient.request(getAllProductsQuery);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
 
 
-// export const parseShopifyResponse = (response) =>  JSON.parse(JSON.stringify(response));
+export const parseShopifyResponse = (response) =>  JSON.parse(JSON.stringify(response));

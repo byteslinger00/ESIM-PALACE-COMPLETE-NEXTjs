@@ -45,7 +45,6 @@ export const Section4 = () => {
   }, [currentID]);
 
   const clickSave = async () => {
-    console.log(currentID);
     if (signup_validate(toast, fullName, email, phone, password)) return;
     setLoading(true);
     await CustomerEditDetails(
