@@ -26,7 +26,6 @@ export const Section3 = () => {
     (async () => {
       setLoading(true);
       const user_info = GetUserInfoFromCookie(getCookie("user_info"));
-      console.log(selected_package?.package_type_id);
       let data = await buyEsimById(
         user_info.customer_details.customer_id,
         selected_package?.package_type_id,

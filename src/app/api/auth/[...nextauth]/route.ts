@@ -36,7 +36,6 @@ const authOptions: any = {
                         //     }
                         // );
                         // const response = await res.json();
-                        console.log(user);
                         return Promise.resolve(true);
                     } catch (err) {
                         return Promise.reject(new Error(SERVER_ERR_MSG));

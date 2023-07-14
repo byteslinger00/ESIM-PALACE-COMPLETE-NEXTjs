@@ -22,7 +22,10 @@ export async function POST(req: NextRequest) {
       success_url: `${req.headers.get('origin')}/?success=true`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
     });
-    return NextResponse.redirect(session.url);
+    const response = new NextResponse(null, {status: 200});
+    response.headers.set('Location', session.url);
+    return response;
+    // return NextResponse.redirect(session.url);
   } catch (err:any) {
     // res.status(err.statusCode || 500).json(err.message);
     return new NextResponse(err.message, {
