@@ -4,6 +4,7 @@ import { DetailCard } from "./DetailCard";
 import useParticipantStore from "@/store/use-participant";
 import { motion } from "framer-motion";
 import { details_container } from "@/utils/animations";
+import { setCookie } from "cookies-next";
 
 interface props {
   data?: Array<details>;
@@ -17,6 +18,7 @@ export const Details: React.FC<props> = ({ data, showModal, isVisible }) => {
   const showData = (index: number) => {
     if (data !== undefined) {
       setSelected_Package(data[index]);
+      setCookie('selected_package', JSON.stringify(data[index]));
       showModal(true);
     }
   };

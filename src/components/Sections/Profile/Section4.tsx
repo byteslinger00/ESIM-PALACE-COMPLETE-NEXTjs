@@ -3,7 +3,7 @@ import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import { TextInput } from "@/components/elements/common/TextInput";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
-import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
+import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
 import { user_info } from "@/types/userinfo.type";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ export const Section4 = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const user_info: user_info = GetUserInfoFromCookie(getCookie("user_info"));
+    const user_info: user_info = GetInfoFromCookie(getCookie("user_info"));
     if (user_info === undefined) {
       router.push("/");
       return;

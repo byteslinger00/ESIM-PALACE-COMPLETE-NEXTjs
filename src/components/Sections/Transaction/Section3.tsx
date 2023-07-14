@@ -1,43 +1,54 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
+import QRCode from "react-qr-code";
+import { usePathname } from "next/navigation";
+
 import { Card } from "@/components/elements/Transaction/Card";
 import { Button } from "@/components/elements/Transaction/Button";
 import { Roaming } from "@/components/elements/Transaction/Roaming";
 import { Reload } from "@/components/elements/Transaction/Reload";
 import { Info } from "@/components/elements/Transaction/Info";
 import { ContactUs } from "@/components/elements/Transaction/ContactUs";
-import useParticipantStore from "@/store/use-participant";
-import buyEsimById from "@/actions/Packages/buyEsimById";
-import { getCookie } from "cookies-next";
-import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
-import QRCode from "react-qr-code";
-import { transaction } from "@/types/transaction.type";
 import { Spinner } from "@/components/elements/common/Spinner";
 
+import useParticipantStore from "@/store/use-participant";
+import buyEsimById from "@/actions/Packages/buyEsimById";
+
+import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
+import { transaction } from "@/types/transaction.type";
+
+
 export const Section3 = () => {
-  const { selected_package } = useParticipantStore((state) => state);
+
+  const pathName = usePathname();
+
   const [transactionData, setData] = useState<transaction>();
   const [selected_type, setType] = useState(false);
   const [is_Loading, setLoading] = useState(false);
+  
+  const selected_package = GetInfoFromCookie(getCookie("selected_package"));
 
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const user_info = GetUserInfoFromCookie(getCookie("user_info"));
-      let data = await buyEsimById(
+      const package_type_id = pathName.split('/')[2];
+      const user_info = GetInfoFromCookie(getCookie("user_info"));
+      const data = await buyEsimById(
         user_info.customer_details.customer_id,
-        selected_package?.package_type_id,
+        Number(package_type_id),
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
       if(data === false)
         return;
       setData(data);
+      
       setLoading(false);
     })();
-  }, [selected_package?.package_type_id]);
+  }, [pathName]);
 
   const handleClickType = (name: string) => {
     switch (name) {
@@ -55,7 +66,6 @@ export const Section3 = () => {
       {is_Loading ? <Spinner /> : <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
         <div className="flex flex-col gap-[60px]">
           <div className="flex flex-row gap-4">
-            
             <Image
               src="/assets/Transaction Page/Icons/Check mark.svg"
               width={64}
@@ -105,7 +115,7 @@ export const Section3 = () => {
             iccid={transactionData?.iccid}
             country={transactionData?.country_name}
           />
-          <Reload />
+          <Reload/>
           <Info
             full_name={transactionData?.request.full_name}
             email={transactionData?.request.email}
@@ -120,7 +130,7 @@ export const Section3 = () => {
         <div className="max-lg:order-first">
           <Card
             country={selected_package?.country_code}
-            title={selected_package?.country_name}
+            title={transactionData?.country_name}
             size={selected_package?.data_GB}
             price={Number(selected_package?.price)}
             subtotal={Number(selected_package?.price)}

@@ -10,24 +10,22 @@ export async function POST(req: NextRequest) {
           {
               price_data: {
                   currency: 'usd',
-                  product_data: { // Same as with price_data, we're creating a Product inline here, alternatively pass the ID of an existing Product using line_items.price_data.product
-                      name: 'Shoes'
+                  product_data: { 
+                      name: 'Order#'+req.headers.get('Order')
                   },
-                  unit_amount: 1000 // 10 US$
+                  unit_amount: 100 * Number(req.headers.get('Price'))
               },
               quantity: 1,
           },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/?success=true`,
+      success_url: `${req.headers.get('origin')}/?success=true&&id=${req.headers.get('Id')}`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
     });
     const response = new NextResponse(null, {status: 200});
     response.headers.set('Location', session.url);
     return response;
-    // return NextResponse.redirect(session.url);
   } catch (err:any) {
-    // res.status(err.statusCode || 500).json(err.message);
     return new NextResponse(err.message, {
       status: 500,
     });

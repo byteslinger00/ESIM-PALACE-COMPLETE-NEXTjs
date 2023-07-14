@@ -9,21 +9,27 @@ import { checkFlag } from "@/utils/checkFlag";
 import { SupportedCountries } from "./SimSupportedCountries";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { checkout } from "@/actions/Stripe/checkout";
+import { toast } from "react-toastify";
 
 interface props {
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Modal: React.FC<props> = ({ showModal }) => {
-  
   const { selected_package } = useParticipantStore((state) => state);
   const [is_accept, setAccept] = useState(false);
   const router = useRouter();
-  
-  const handleClickBuy = () => {
-    const url = '/transaction/'+selected_package?.package_type_id;
-    router.push(url);
-  }
+
+  const handleClickBuy = async () => {
+    const response = await checkout(
+      selected_package?.country_name || "",
+      selected_package?.price || "",
+      selected_package?.package_type_id || 0
+    );
+    if (response) router.push(response);
+    else toast.error("Connection Failed");
+  };
   if (selected_package !== undefined)
     return (
       <div className="w-full h-full top-0 left-0 overscroll-contain block absolute">
@@ -71,13 +77,21 @@ export const Modal: React.FC<props> = ({ showModal }) => {
               </p>
             </div>
             <div className="flex flex-row gap-3">
-              <input type="checkbox" className="w-[24px] h-[24px] my-auto" onClick={()=>setAccept(!is_accept)}/>
+              <input
+                type="checkbox"
+                className="w-[24px] h-[24px] my-auto"
+                onClick={() => setAccept(!is_accept)}
+              />
               <p className="xl:text-[16px] text-[14px]">
                 I have read and accepted the terms of service and privacy
                 policy.
               </p>
             </div>
-            <OrangeButton disabled={!is_accept} text="Buy Now" onCLick={handleClickBuy}/>
+            <OrangeButton
+              disabled={!is_accept}
+              text="Buy Now"
+              onCLick={handleClickBuy}
+            />
           </div>
           <div className="bg-[#EBF6FF] p-10 whitespace-normal flex flex-col gap-10">
             <div className="flex flex-col gap-6">

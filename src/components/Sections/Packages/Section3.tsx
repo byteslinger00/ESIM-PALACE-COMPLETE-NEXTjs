@@ -141,7 +141,6 @@ export const Section3 = () => {
           />
         </div>
       </motion.div>
-      <OrangeButton text="Show More Countries" />
       {is_modal ? <Modal showModal={showModal} /> : ""}
     </section>
   );

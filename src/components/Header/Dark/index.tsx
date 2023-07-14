@@ -6,13 +6,13 @@ import useParticipantStore from "@/store/use-participant";
 import { useEffect, useState } from "react";
 import { Detail } from "./detail";
 import { getCookie } from "cookies-next";
-import { GetUserInfoFromCookie } from "@/utils/getUserInfoFromCookie";
+import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
 
 export const Header = () => {
   const { is_logged, setLogged } = useParticipantStore((state) => state);
 
   useEffect(() => {
-    const user_info = GetUserInfoFromCookie(getCookie('user_info'));
+    const user_info = GetInfoFromCookie(getCookie('user_info'));
     if(user_info?.customer_authenticated === true)
       setLogged(true);
   }, [setLogged]);
