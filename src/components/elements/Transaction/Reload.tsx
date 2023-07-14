@@ -11,7 +11,6 @@ export const Reload = () => {
   const router = useRouter();
   const onCheckout = async () => {
     const response = await checkout();
-    console.log(response);
     router.push(response || '');
   }
 

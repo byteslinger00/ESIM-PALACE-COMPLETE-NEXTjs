@@ -5,8 +5,6 @@ const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 export async function POST(req: NextRequest) {  
   try {
     // Create Checkout Sessions from body params.
-    console.log('key+++');
-    console.log(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
     const session = await stripe.checkout.sessions.create({
       line_items: [
           {
