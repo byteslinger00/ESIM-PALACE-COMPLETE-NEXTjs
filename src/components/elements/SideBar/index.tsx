@@ -18,7 +18,7 @@ export const SideBar = () => {
         onClick={() => showSideBar(false)}
       ></div>
       <div
-        className={`z-[1000] fixed top-0 right-0 flex flex-col gap-2 w-[320px] h-[100vh] font-montserrat bg-white rounded-l-[16px] p-4 ${
+        className={`z-[1000] fixed top-0 right-0 flex flex-col gap-2 w-[320px] h-[100vh] font-montserrat bg-white text-[#081B27] rounded-l-[16px] p-4 ${
           is_sidebar ? "sidebar-show" : ""
         }`}
       >
