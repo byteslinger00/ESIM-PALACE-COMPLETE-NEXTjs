@@ -21,7 +21,8 @@ export const contact = {
     SectionDescription0: "Contacting us or contacting your loved ones has never been easier. Search or scroll below and find the contacts or ability to contact you have been searching for.",
     SectionHeader1: "Contact eSim Palace",
     SectionDescription1: "We are available around the clock to answer all of your questions, whenever you need us. If you have any support questions, please try our support page first as 99% of our customers find the answer they are looking for within three clicks.",
-
+    Support: "The condition of being supported.  assistance provided by a company to users of its products. customer support. one that supports.",
+    Corporate: "A corporation is an organization usually group of people company authorized by the state to act as a single entity and recognized as such in law",
 }
 
 export const packages = {

@@ -42,6 +42,7 @@ export const Section3 = () => {
         user_info.customer_details.full_name,
         user_info.customer_details.phone_number
       );
+      console.log(data);
       if(data === false)
         return;
       setData(data);

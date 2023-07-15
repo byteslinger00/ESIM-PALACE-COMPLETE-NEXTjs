@@ -10,9 +10,10 @@ interface props {
   href: string;
   title: string;
   icon: ReactNode;
+  hidden_pc?: boolean;
 }
 
-export const SideBarItem: React.FC<props> = ({ href, title, icon }) => {
+export const SideBarItem: React.FC<props> = ({ href, title, icon, hidden_pc }) => {
   const { setLogged, showSideBar } = useParticipantStore((state) => state);
   const router = useRouter();
   const clickSignOut = async () => {
@@ -25,7 +26,7 @@ export const SideBarItem: React.FC<props> = ({ href, title, icon }) => {
     return (
       <Link
         href={href}
-        className="py-2 px-4 hover:bg-gray-100 rounded-md flex flex-row gap-2"
+        className={`py-2 px-4 hover:bg-gray-100 rounded-md flex flex-row gap-2 ${hidden_pc?'lg:hidden':''}`}
         onClick={() => showSideBar(false)}
       >
         {icon}

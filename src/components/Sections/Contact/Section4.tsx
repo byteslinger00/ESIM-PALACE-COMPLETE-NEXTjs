@@ -8,9 +8,9 @@ export const Section4 = () => {
       <div className="bg-white lg:rounded-[32px] rounded-[10px] grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-[15px] lg:px-20 lg:py-20 px-5 py-5">
         <TextInput type="text" header="Full Name*" placeholder="Helex Mofidex"/>
         <TextInput type="text" header="Your Email*" placeholder="info@example.com"/>
-        <TextInput type="text" header="Phone Number*" placeholder="+123 4456 7889 88"/>
-        <TextInput type="text" header="Device Model*" placeholder="iPhone 14"/>
-        <TextInput type="text" header="eSim ICCID*" placeholder="44XXXXXXXXXXXXXXXXXX"/>
+        <TextInput type="text" header="Phone Number" placeholder="+123 4456 7889 88"/>
+        <TextInput type="text" header="Device Model" placeholder="iPhone 14"/>
+        <TextInput type="text" header="eSim ICCID" placeholder="44XXXXXXXXXXXXXXXXXX"/>
         <TextInput type="text" header="Subject*" placeholder="info@example.com"/>
         <div className="flex flex-col gap-3 text-left font-montserrat md:col-span-2">
             <p className="text-[20px] font-semibold">Message*</p>

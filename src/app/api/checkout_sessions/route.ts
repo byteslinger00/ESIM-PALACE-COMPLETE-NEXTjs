@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
           },
       ],
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/?success=true&&id=${req.headers.get('Id')}`,
+      success_url: `${req.headers.get('origin')}/transaction/${req.headers.get('Id')}`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
     });
     const response = new NextResponse(null, {status: 200});

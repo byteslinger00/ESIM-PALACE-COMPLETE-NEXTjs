@@ -69,7 +69,7 @@ export const Footer = () => {
       <hr className="mt-[100px] border-[#234A64]" />
       <div className="flex lg:flex-row flex-col gap-4 mt-[18px] max-lg:mx-auto">
         <p className="grow text-dark-shade-2 max-lg:text-center sm:text-[16px] text-[12px]">
-          Copyright ©2023 <span className="text-white">ESIMPALCE</span>. All
+          Copyright ©2023 <span className="text-white">eSim Palace Inc</span>. All
           Rights Reserved.
         </p>
         <div className="flex flex-row sm:gap-4 gap-2">

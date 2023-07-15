@@ -23,7 +23,7 @@ export default async function buyEsimById(customer_id: string, package_type_id: 
         }),
       }
     );
-    if (res.ok === false) throw res.statusText;
+    if (res.ok === false) throw res;
     const response = await res.json();
     return response;
   } catch (error) {

@@ -45,34 +45,40 @@ export const SideBar = () => {
           href="/"
           title="Home"
           icon={<RiHomeOfficeLine size={18} className="my-auto" />}
+          hidden_pc={true}
         />
         <SideBarItem
           href="/packages"
           title="Packages"
           icon={<LuPackageOpen size={18} className="my-auto" />}
+          hidden_pc={true}
         />
-        <hr />
+        <hr className="lg:hidden"/>
         <SideBarItem
           href="/about"
           title="About us"
           icon={<LuHelpCircle size={18} className="my-auto" />}
+          hidden_pc={true}
         />
         <SideBarItem
           href="/support"
           title="Support"
           icon={<MdSupportAgent size={18} className="my-auto" />}
+          hidden_pc={true}
         />
         <SideBarItem
           href="/affiliates"
           title="Affiliates"
           icon={<TbAffiliate size={18} className="my-auto" />}
+          hidden_pc={true}
         />
         <SideBarItem
           href="/contact"
           title="Contact us"
           icon={<GrContact size={18} className="my-auto" />}
+          hidden_pc={true}
         />
-        <hr />
+        <hr className="lg:hidden"/>
         {is_logged ? (
           <SideBarItem
             href="#"
