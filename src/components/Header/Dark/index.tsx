@@ -37,7 +37,7 @@ export const Header = () => {
           ""
         ) : (
           <a
-            className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold hover:bg-[#FBFBFB] border-[#E3E3E3] border-[1px] bg-white text-[16px] max-lg:hidden"
+            className="rounded-lg px-[25px] py-[15px] font-montserrat font-semibold hover:bg-[#FBFBFB] border-[#E3E3E3] border-[1px] bg-white text-[#081B27] text-[16px] max-lg:hidden"
             href="/signup"
           >
             <p className="leading-3">Sign Up</p>
