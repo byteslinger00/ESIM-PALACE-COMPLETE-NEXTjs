@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
           },
       ],
       mode: 'payment',
+      allow_promotion_codes: true,
       success_url: `${req.headers.get('origin')}/transaction/${req.headers.get('Id')}`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
     });

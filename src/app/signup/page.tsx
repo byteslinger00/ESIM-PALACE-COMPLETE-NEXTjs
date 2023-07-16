@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { Logo } from "@/components/SignUp/Logo";
 import { TextInput } from "@/components/SignUp/TextInput";
 import { signup_validate } from "@/utils/validation";
 import { useRouter } from "next/navigation";

@@ -93,11 +93,10 @@ export const Section3 = () => {
           <option value="Oceania">Oceania</option>
           <option value="Global">Global</option>
         </select>
-        <Search />
       </div>
 
       <motion.div
-        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container "
+        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container 2xl:px-0 xl:px-[100px] md:px-0"
         variants={card_container}
         initial="hidden"
         animate={countries?.length ? "visible" : "hidden"}

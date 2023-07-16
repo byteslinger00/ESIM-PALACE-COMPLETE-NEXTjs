@@ -5,6 +5,8 @@ import useParticipantStore from "@/store/use-participant";
 import { motion } from "framer-motion";
 import { details_container } from "@/utils/animations";
 import { setCookie } from "cookies-next";
+import checkStockById from "@/actions/Packages/checkStockById";
+import { toast } from "react-toastify";
 
 interface props {
   data?: Array<details>;
@@ -15,8 +17,14 @@ export const Details: React.FC<props> = ({ data, showModal, isVisible }) => {
   //Store
   const { setSelected_Package } = useParticipantStore((state) => state);
 
-  const showData = (index: number) => {
+  const showData = async (index: number) => {
     if (data !== undefined) {
+      const is_available = await checkStockById(data[index].package_type_id);
+      if(is_available === false)
+      {
+        toast.error("Esim is not available! Please contact us!");
+        return;
+      }
       setSelected_Package(data[index]);
       setCookie('selected_package', JSON.stringify(data[index]));
       showModal(true);

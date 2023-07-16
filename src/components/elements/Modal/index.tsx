@@ -107,7 +107,10 @@ export const Modal: React.FC<props> = ({ showModal }) => {
               </p>
             </div>
             <div className="flex flex-col gap-4">
-              <Properties title="Network" text="Proximius PLC" />
+              <Properties title="Network" text={selected_package.network} />
+              <Properties title="Best Connectivity" text={selected_package.best_connectivity} />
+              <Properties title="Activation Policy" text={selected_package.activation_policy} />
+              <Properties title="KYC_Display" text={selected_package.kyc_display} />
               <SupportedCountries
                 countries={selected_package.supported_countries}
               />

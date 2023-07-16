@@ -1,3 +1,4 @@
+"use client"
 import { checkFlag } from "@/utils/checkFlag";
 import Image from "next/image";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";

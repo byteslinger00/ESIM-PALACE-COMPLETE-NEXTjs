@@ -1,11 +1,16 @@
 import useParticipantStore from "@/store/use-participant";
 import Image from "next/image";
 import { SideBarItem } from "./SideBarItem";
-import { RiUserSettingsLine, RiHomeOfficeLine, RiUserAddLine } from "react-icons/ri";
+import {
+  RiUserSettingsLine,
+  RiHomeOfficeLine,
+  RiUserAddLine,
+} from "react-icons/ri";
 import { LuPackageOpen, LuHelpCircle } from "react-icons/lu";
 import { MdSupportAgent } from "react-icons/md";
 import { TbAffiliate, TbLogout2, TbLogin } from "react-icons/tb";
 import { GrContact } from "react-icons/gr";
+import { BsSim } from "react-icons/bs";
 
 export const SideBar = () => {
   const { is_logged, is_sidebar, showSideBar } = useParticipantStore(
@@ -40,6 +45,15 @@ export const SideBar = () => {
         ) : (
           ""
         )}
+        {is_logged ? (
+          <SideBarItem
+            href="/esims"
+            title="My eSims"
+            icon={<BsSim size={18} className="my-auto" />}
+          />
+        ) : (
+          ""
+        )}
         <hr />
         <SideBarItem
           href="/"
@@ -53,7 +67,7 @@ export const SideBar = () => {
           icon={<LuPackageOpen size={18} className="my-auto" />}
           hidden_pc={true}
         />
-        <hr className="lg:hidden"/>
+        <hr className="lg:hidden" />
         <SideBarItem
           href="/about"
           title="About us"
@@ -78,7 +92,7 @@ export const SideBar = () => {
           icon={<GrContact size={18} className="my-auto" />}
           hidden_pc={true}
         />
-        <hr className="lg:hidden"/>
+        <hr className="lg:hidden" />
         {is_logged ? (
           <SideBarItem
             href="#"
