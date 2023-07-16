@@ -44,6 +44,6 @@ export const support = {
 export const transaction = {
     SectionHeader0: "Data For\nEverywhere",
     SectionDescription0: "Enjoy data wherever you are or are going at the click of a button.",
-    SectionHeader1: "Checkout",
+    SectionHeader1: "Order Confirmation",
     SectionDescription1: "See below for all our packages listed by country and region. Find data for everywhere you want to go.",
 }
