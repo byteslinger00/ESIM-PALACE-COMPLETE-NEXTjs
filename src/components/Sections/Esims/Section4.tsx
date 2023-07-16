@@ -40,8 +40,9 @@ export const Section4 = () => {
   }, [currentID]);
 
   const handleDetail = async (iccid:string, customer_id:string) => {
+    setLoading(true);
     const response = await getDetailsByEsim(iccid,customer_id);
-    console.log(response);
+    setLoading(false);
     setData(response);
     showModal(true);
   }
@@ -59,7 +60,7 @@ export const Section4 = () => {
         Your Esim List
       </h1>
       {esim_list?.count ? (
-        <div className="bg-white lg:rounded-[32px] rounded-[10px] grid md:grid-cols-3 grid-cols-1 lg:gap-[30px] gap-[15px] lg:px-20 lg:py-20 px-5 py-5">
+        <div className="bg-white lg:rounded-[32px] rounded-[10px] grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-[15px] lg:px-20 lg:py-20 px-5 py-5">
           {esim_list.elements.map((item, index) => (
             <Card
               key={index}
