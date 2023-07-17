@@ -27,7 +27,6 @@ export const Details: React.FC<props> = ({ data, showModal, isVisible }) => {
       }
       setSelected_Package(data[index]);
       setCookie('selected_package', JSON.stringify(data[index]));
-      alert(data[index].package_type_id);
       showModal(true);
     }
   };
@@ -52,6 +51,7 @@ export const Details: React.FC<props> = ({ data, showModal, isVisible }) => {
           price={item.price}
           id={index}
           showData={showData}
+          name_additional_text={item.name_additional_text}
         />
       ))}
     </motion.div>

@@ -12,6 +12,7 @@ interface props {
   iccid: string;
   customer_id: string;
   handleDetail: any;
+  handleTopUp: any;
 }
 
 export const Card: React.FC<props> = ({
@@ -21,10 +22,15 @@ export const Card: React.FC<props> = ({
   iccid,
   customer_id,
   handleDetail,
+  handleTopUp
 }) => {
   const detailHandle = async () => {
     await handleDetail(iccid, customer_id);
-  };
+  }
+
+  const topupHandle = async () => {
+    await handleTopUp(iccid, customer_id);
+  }
 
   return (
     <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
@@ -50,6 +56,7 @@ export const Card: React.FC<props> = ({
         </div>
       </div>
       <hr className="opacity-20" />
+      <p>ICCID: {iccid}</p>
       <div className="flex flex-row">
         <div className="flex flex-row gap-2">
           <Image
@@ -67,6 +74,7 @@ export const Card: React.FC<props> = ({
           {assigned_date}
         </p>
       </div>
+      
       <div className="grid grid-cols-2 gap-1">
         <button
           onClick={detailHandle}
@@ -74,7 +82,9 @@ export const Card: React.FC<props> = ({
         >
           Details
         </button>
-        <button className="py-3 max-md:w-full md:text-[18px] disabled:bg-light-solid text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold">
+        <button
+         onClick={topupHandle} 
+        className="py-3 max-md:w-full md:text-[18px] disabled:bg-light-solid text-[16px] bg-primary-solid hover:bg-[#FBE8BB] text-dark-solid rounded-lg text-center font-montserrat font-bold">
           TopUp
         </button>
       </div>

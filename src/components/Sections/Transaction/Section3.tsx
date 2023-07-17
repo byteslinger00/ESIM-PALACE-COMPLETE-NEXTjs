@@ -114,11 +114,6 @@ export const Section3 = () => {
               country={transactionData?.country_name}
             />
             <Reload />
-            <Info
-              full_name={transactionData?.request.full_name}
-              email={transactionData?.request.email}
-              phone_number={transactionData?.request.phone_number}
-            />
             <ContactUs />
             <hr className="border-[#DDDDDD] max-lg:hidden" />
             <p className="font-montserrat text-[18px] text-left max-lg:hidden">

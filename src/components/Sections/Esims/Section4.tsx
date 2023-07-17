@@ -47,6 +47,11 @@ export const Section4 = () => {
     showModal(true);
   }
 
+  const handleTopUp = async (iccid: string, customer_id: string) => {
+    alert(iccid);
+    alert(customer_id);
+  }
+
   return (
     <section className="min-h-screen mi-medium:px-[300px] 2xl:px-[100px] px-6 md:py-[135px] py-[40px] text-dark-solid text-center bg-light-solid">
       {is_Loading ? (
@@ -70,6 +75,7 @@ export const Section4 = () => {
               iccid={item.iccid}
               customer_id={currentID}
               handleDetail={handleDetail}
+              handleTopUp={handleTopUp}
             />
           ))}
         </div>

@@ -24,7 +24,7 @@ export const DropDown: React.FC<props> = ({ title, description, visible }) => {
         />
       </div>
       {is_visible ? <hr className="border-[#AAD9FF]" /> : ""}
-      {is_visible ? <p className="font-montserrat">{description}</p> : ""}
+      {is_visible ? <div className="font-montserrat">{description}</div> : ""}
     </div>
   );
 };

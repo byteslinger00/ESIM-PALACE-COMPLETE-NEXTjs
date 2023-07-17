@@ -23,7 +23,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
 
   const handleClickBuy = async () => {
     const response = await checkout(
-      selected_package?.country_name || "",
+      selected_package?.name || "",
       selected_package?.price || "",
       selected_package?.package_type_id || 0
     );
@@ -63,6 +63,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
             )}
             <h2 className="font-montserrat2xl xl:text-[24px] text-[20px]">
               {selected_package.country_name}
+              {selected_package.name_additional_text? `(${selected_package.name_additional_text})` : ''}
             </h2>
             <hr className="border-[#C8E8FF]" />
             <Property
@@ -108,9 +109,18 @@ export const Modal: React.FC<props> = ({ showModal }) => {
             </div>
             <div className="flex flex-col gap-4">
               <Properties title="Network" text={selected_package.network} />
-              <Properties title="Best Connectivity" text={selected_package.best_connectivity} />
-              <Properties title="Activation Policy" text={selected_package.activation_policy} />
-              <Properties title="KYC_Display" text={selected_package.kyc_display} />
+              <Properties
+                title="Best Connectivity"
+                text={selected_package.best_connectivity}
+              />
+              <Properties
+                title="Activation Policy"
+                text={selected_package.activation_policy}
+              />
+              <Properties
+                title="KYC_Display"
+                text={selected_package.kyc_display}
+              />
               <SupportedCountries
                 countries={selected_package.supported_countries}
               />

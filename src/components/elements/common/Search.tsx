@@ -20,6 +20,10 @@ export const Search: React.FC<props> = ({ handleSearch }) => {
         onChange={(e) => {
           setValue(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if(e.key === 'Enter')
+            handleSearch(searchvalue)
+        }}
       />
       <button
         className="my-auto bg-primary-solid xl:w-12 xl:h-12 w-[30px] h-[30px] rounded-lg"

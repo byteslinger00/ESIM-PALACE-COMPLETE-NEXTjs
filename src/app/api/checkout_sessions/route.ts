@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
               price_data: {
                   currency: 'usd',
                   product_data: { 
-                      name: 'Order#'+req.headers.get('Order')
+                      name: req.headers.get('Order')
                   },
                   unit_amount: 100 * Number(req.headers.get('Price'))
               },

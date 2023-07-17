@@ -46,26 +46,11 @@ export const Card: React.FC<props> = ({
         <p className="font-montserratbold grow">Subtotal</p>
         <p className="font-montserratbold">${subtotal}</p>
       </div>
-      <div className="flex flex-row">
-        <div className="grow flex flex-row gap-6">
-          <p className="">Discount</p>
-          <div className="flex flex-row gap-1">
-            <Image
-              src="/assets/Transaction Page/Icons/Hot sale.svg"
-              width={16}
-              height={16}
-              alt="Hot Sale"
-            />
-            <p>ESIMTEST2023</p>
-          </div>
-        </div>
-        <p className="font-montserratbold">-${discount}</p>
-      </div>
       <hr className="border-[#E1E1E1]" />
       <div className="flex flex-row">
         <p className="font-montserratbold grow">Total</p>
         <p className="font-montserratbold">
-          ${subtotal - discount < 0 ? 0 : subtotal - discount}
+          ${subtotal - discount < 0 ? 0 : subtotal }
         </p>
       </div>
     </div>
