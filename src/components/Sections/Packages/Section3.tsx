@@ -3,21 +3,16 @@
 import { useEffect, useState } from "react";
 //components
 import { SelectTab } from "@/components/elements/Packages/SelectTab";
-import { Search } from "@/components/elements/Packages/Search";
-import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import { Modal } from "@/components/elements/Modal";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { toast } from "react-toastify";
-import { CountryCard } from "@/components/elements/Homepage/CountryCard";
-import { Details } from "@/components/elements/Homepage/Details";
 //actions
 import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
 import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 //type
 import { details } from "@/types/details.type";
 import { packages } from "@/types/packages.type";
-import { motion } from "framer-motion";
-import { card_container, card_item } from "@/utils/animations";
+import { Countreis } from "../Countries";
 
 export const Section3 = () => {
   const [is_modal, showModal] = useState(false);
@@ -94,52 +89,15 @@ export const Section3 = () => {
           <option value="Global">Global</option>
         </select>
       </div>
-
-      <motion.div
-        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container 2xl:px-0 xl:px-[100px] md:px-0"
-        variants={card_container}
-        initial="hidden"
-        animate={countries?.length ? "visible" : "hidden"}
-      >
-        {countries?.length !== 0
-          ? countries?.map((item, index) => {
-              return (
-                <motion.div key={index} variants={card_item}>
-                  <CountryCard
-                    selected_country={selected_country}
-                    country_code={item.country_code}
-                    country={item.country_name}
-                    id={index}
-                    onLoad={LoadDetail}
-                  />
-                </motion.div>
-              );
-            })
-          : ""}
-        <div
-          className={`max-xl:hidden grid-item grid-A${
-            Math.floor(selected_cardIndex / 5) + 1
-          }`}
-        >
-          <Details
-            data={details}
-            showModal={showModal}
-            isVisible={detailsVisible}
-          />
-        </div>
-
-        <div
-          className={`xl:hidden grid-item grid-A${
-            Math.floor(selected_cardIndex / 2) + 1
-          }`}
-        >
-          <Details
-            data={details}
-            showModal={showModal}
-            isVisible={detailsVisible}
-          />
-        </div>
-      </motion.div>
+      <Countreis
+        countries={countries}
+        selected_country={selected_country}
+        selected_cardIndex={selected_cardIndex}
+        details={details}
+        detailsVisible={detailsVisible}
+        showModal={showModal}
+        LoadDetail={LoadDetail}
+      />
       {is_modal ? <Modal showModal={showModal} /> : ""}
     </section>
   );

@@ -37,7 +37,10 @@ export default function Page() {
       toast.error("Enter your email id");
       return;
     }
-    SendForgotPassword(toast,id)
+    setLoading(true);
+    const data = await SendForgotPassword(toast,id);
+    if(data === true) setCookie('reset-email', id);
+    setLoading(false);
   }
 
   return (

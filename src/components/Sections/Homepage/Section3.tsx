@@ -1,18 +1,22 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { CountryCard } from "../../elements/Homepage/CountryCard";
+import { useEffect, useState } from "react";
 import getCountriesByRegion from "@/actions/Packages/getCountriesByRegion";
 import { packages } from "@/types/packages.type";
-import { Details } from "@/components/elements/Homepage/Details";
 import getDetailsByCountry from "@/actions/Home/getDetailsByCountry";
 import { details } from "@/types/details.type";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { toast } from "react-toastify";
 import { Modal } from "@/components/elements/Modal";
-import { motion } from "framer-motion";
-import { card_container, card_item } from "@/utils/animations";
+import { Countreis } from "../Countries";
+import getSearchData from "@/actions/Search/getSearchData";
 
-export const Section3 = () => {
+interface props {
+  title: string;
+  search?: string;
+  is_search?: boolean;
+}
+
+export const Section3:React.FC<props> = ({title,search, is_search}) => {
   const [popularCountries, setCountries] = useState<Array<packages>>();
   const [selected_cardIndex, setIndex] = useState(1);
   const [selected_country, setCountry] = useState("");
@@ -25,7 +29,11 @@ export const Section3 = () => {
     (async () => {
       setLoading(true);
       setVisible(false);
-      const data = await getCountriesByRegion("Popular");
+      let data;
+      if(title === 'Popular Countries')
+        data = await getCountriesByRegion("Popular");
+      else
+        data = await getSearchData(search || '');
       if (data === false) {
         toast.error("Connection Failed!", {
           position: toast.POSITION.TOP_RIGHT,
@@ -37,7 +45,7 @@ export const Section3 = () => {
       setCountries(data);
       setLoading(false);
     })();
-  }, []);
+  }, [search, title]);
   const LoadDetail = async (country_name: string, index: number) => {
     if (country_name === selected_country) {
       setCountry("");
@@ -47,7 +55,7 @@ export const Section3 = () => {
     setCountry(country_name);
     setLoading(true);
     setVisible(false);
-    
+
     const data = await getDetailsByCountry(country_name);
     if (data === false) {
       toast.error("Connection Failed", {
@@ -64,57 +72,22 @@ export const Section3 = () => {
   };
 
   return (
-    <section className="relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 pt-[135px] bg-[#F9F7F7] text-dark-solid text-center">
+    <section className={`relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 pt-[135px] ${is_search? 'bg-white' : 'bg-[#F9F7F7]'}  text-dark-solid text-center ${is_search? '!px-0' : ''} ${is_search? '!py-0' : ''}`}>
       <div className="flex flex-row">
         <p className="font-montserrat2xl xl:text-[48px] text-[32px] max-xl:mx-auto">
-          Popular Countries
+          {title}
         </p>
       </div>
-      {is_Loading ? <Spinner /> : ""}
-      
-      <motion.div
-        className="w-full my-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container"
-        variants={card_container}
-        initial="hidden"
-        animate={popularCountries ? 'visible': 'hidden'}
-      >
-        {popularCountries?.length !== 0
-          ? popularCountries?.map((item, index) => (
-              <motion.div variants={card_item} key={"Popular"+index} >
-                <CountryCard
-                  key={"Popular Country" + index}
-                  selected_country={selected_country}
-                  id={index}
-                  country_code={item.country_code}
-                  country={item.country_name}
-                  onLoad={LoadDetail}
-                />
-              </motion.div>
-            ))
-          : ""}
-        <div
-          className={`max-xl:hidden grid-item grid-A${
-            Math.floor(selected_cardIndex / 5) + 1
-          }`}
-        >
-          <Details
-            data={details}
-            showModal={showModal}
-            isVisible={detailsVisible}
-          />
-        </div>
-        <div
-          className={`xl:hidden grid-item grid-A${
-            Math.floor(selected_cardIndex / 2) + 1
-          }`}
-        >
-          <Details
-            data={details}
-            showModal={showModal}
-            isVisible={detailsVisible}
-          />
-        </div>
-      </motion.div>
+      {is_Loading ? <Spinner is_search={is_search}/> : ""}
+      <Countreis
+        countries={popularCountries}
+        selected_country={selected_country}
+        selected_cardIndex={selected_cardIndex}
+        details={details}
+        detailsVisible={detailsVisible}
+        showModal={showModal}
+        LoadDetail={LoadDetail}
+      />
       {is_modal ? <Modal showModal={showModal} /> : ""}
     </section>
   );

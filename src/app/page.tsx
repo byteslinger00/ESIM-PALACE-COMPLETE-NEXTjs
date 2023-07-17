@@ -7,20 +7,27 @@ import { homepage } from "@/utils/page-description";
 import { Section1 } from "@/components/Sections/Section1";
 import { Header } from "@/components/Header/Light";
 import { Categories } from "@/components/Sections/Categories";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [on_search, setSearch] = useState(false);
+  const [searchValue, setValue] = useState('');
+  const handleSearch = (searchValue: string) => {
+    setValue(searchValue);
+    setSearch(true);
+  }
   return (
     <main className="relative">
       <div className="absolute z-[-10] w-full h-[800px] bg-cover bg-center bg-homepage-background ">
         <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#081B27]"></div>
       </div>
       <Header />
-      <Section1 heading={homepage.SectionHeader0} description={homepage.SectionDescription0}/>
-      <Section2 heading={homepage.SectionHeader1} description={homepage.SectionDescription1}/>
+      <Section1 heading={homepage.SectionHeader0} description={homepage.SectionDescription0} handlesearch={handleSearch}/>
+      <Section2 heading={homepage.SectionHeader1} description={homepage.SectionDescription1} on_search={on_search} searchValue={searchValue}/>
       <Categories />
-      <Section3 />
+      <Section3 title="Popular Countries"/>
       <DownloadESIM />
     </main>
   );

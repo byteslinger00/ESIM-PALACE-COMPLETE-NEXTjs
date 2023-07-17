@@ -1,11 +1,13 @@
 import { Search } from "@/components/elements/common/Search";
 
 interface props {
-    heading: string;
-    description: string;
+  heading: string;
+  description: string;
+  hide?: boolean;
+  handlesearch: any;
 }
 
-export const Section1:React.FC<props> = ({heading, description}) => {
+export const Section1: React.FC<props> = ({ heading, description, hide, handlesearch }) => {
   return (
     <div className="w-full h-[800px]">
       <div className="mx-auto  xl:mx-[300px]  max-xl:text-center xl:w-[731px] w-[342px] text-white flex flex-col gap-6">
@@ -15,7 +17,7 @@ export const Section1:React.FC<props> = ({heading, description}) => {
         <p className="xl:mr-[100px] font-montserrat xl:text-[20px] text-[16px] leading-[30px]">
           {description}
         </p>
-        <Search />
+        {hide ? "" : <Search handleSearch={handlesearch}/>}
       </div>
     </div>
   );
