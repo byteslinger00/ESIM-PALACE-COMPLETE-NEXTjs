@@ -61,9 +61,9 @@ export const Section3 = () => {
       {is_Loading ? (
         <Spinner />
       ) : (
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
+        <div className="grid grid-cols-1">
           <div className="flex flex-col gap-[60px]">
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-4 mx-auto">
               <Image
                 src="/assets/Transaction Page/Icons/Check mark.svg"
                 width={64}
@@ -76,7 +76,7 @@ export const Section3 = () => {
               </div>
             </div>
             <hr className="border-[#DDDDDD]" />
-            <div className="flex flex-row gap-8 max-lg:mx-auto">
+            <div className="flex flex-row gap-8 mx-auto">
               <Button
                 title="QR code"
                 color="#FFECBE"
@@ -107,7 +107,14 @@ export const Section3 = () => {
                 viewBox={`0 0 256 256`}
               />
             )}
-
+            <Card
+              country={selected_package?.country_code}
+              title={transactionData?.country_name}
+              size={selected_package?.data_GB}
+              price={Number(selected_package?.price)}
+              subtotal={Number(selected_package?.price)}
+              discount={1.0}
+            />
             {/* Integrate With API */}
             <Roaming
               iccid={transactionData?.iccid}
@@ -120,16 +127,9 @@ export const Section3 = () => {
               Purchase options cancellation policy
             </p>
           </div>
-          <div className="max-lg:order-first">
-            <Card
-              country={selected_package?.country_code}
-              title={transactionData?.country_name}
-              size={selected_package?.data_GB}
-              price={Number(selected_package?.price)}
-              subtotal={Number(selected_package?.price)}
-              discount={1.0}
-            />
-          </div>
+          {/* <div className="max-lg:order-first">
+            
+          </div> */}
         </div>
       )}
     </section>
