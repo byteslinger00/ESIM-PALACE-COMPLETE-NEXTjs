@@ -13,7 +13,6 @@ export default function DashboardLayout({
       <Header />
       {children}
       <Categories />
-      <SearchSection />
       <DownloadESIM />
     </section>
   );

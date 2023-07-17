@@ -14,8 +14,8 @@ export default function Page() {
       <div className="absolute z-[-10] w-full h-[800px] bg-cover bg-center bg-affiliates-background ">
         <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#081B27]"></div>
       </div>
-      <Section1 heading={about.SectionHeader0} description={about.SectionDescription0} />
-      <Section2 heading={about.SectionHeader1} description={about.SectionDescription1} />
+      {/* <Section1 heading={about.SectionHeader0} description={about.SectionDescription0} />
+      <Section2 heading={about.SectionHeader1} description={about.SectionDescription1} /> */}
       <Section3 />
       <TableSection />
     </main>

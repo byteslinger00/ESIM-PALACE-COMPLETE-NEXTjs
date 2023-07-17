@@ -25,7 +25,7 @@ export default function Page() {
       <Section3 />
       <TableSection />
       <Categories />
-      <SearchSection />
+      <SearchSection handleSearch={handleSearch}/>
     </main>
   );
 }
