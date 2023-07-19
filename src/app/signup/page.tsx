@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { TextInput } from "@/components/SignUp/TextInput";
-import { signup_validate } from "@/utils/validation";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { SignUpByEmail } from "@/actions/Signup/signUpByEmail";
+import { validEmail, validName, validPassword, validPhone } from "@/utils/validation";
 
 export default function Page() {
   const [name, setName] = useState("");
@@ -13,10 +13,20 @@ export default function Page() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [is_Loading, setLoading] = useState(false);
+  const [nameValidation, setNameValidation] = useState('');
+  const [emailValidation, setEmailValidation] = useState('');
+  const [passwordValidation, setPasswordValidation] = useState('');
+  const [phoneValidation, setPhoneValidation] = useState('');
+
   const router = useRouter();
 
   const clickSignUp = async () => {
-    if (signup_validate(toast, name, email, phone, password)) return;
+    setNameValidation(validName(name).response);
+    setEmailValidation(validEmail(email).response);
+    setPasswordValidation(validPassword(password).response);
+    setPhoneValidation(validPhone(phone).response);
+    if(validName(name).error || validEmail(email).error || validPassword(password).error || validPhone(phone).error)
+      return;
     setLoading(true);
     let res = await SignUpByEmail(toast, name, email, password, phone);
     setLoading(false);
@@ -43,24 +53,28 @@ export default function Page() {
               setValue={setName}
               placeholder="Helex Mofidex"
               type="text"
+              validation={nameValidation}
             />
             <TextInput
               value={email}
               setValue={setEmail}
               placeholder="info@example.com"
               type="text"
+              validation={emailValidation}
             />
             <TextInput
               value={phone}
               setValue={setPhone}
               placeholder="+123 4456 7889 88"
               type="text"
+              validation={phoneValidation}
             />
             <TextInput
               value={password}
               setValue={setPassword}
               placeholder="**** **** **** ****"
               type="password"
+              validation={passwordValidation}
             />
 
             <div className="md:text-[18px] text-[14px] max-md:text-center">

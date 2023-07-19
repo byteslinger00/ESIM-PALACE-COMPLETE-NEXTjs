@@ -7,9 +7,9 @@ import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
 import { user_info } from "@/types/userinfo.type";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { signup_validate } from "@/utils/validation";
 import { CustomerEditDetails } from "@/actions/Profile/customerEditDetails";
 import { Spinner } from "@/components/elements/common/Spinner";
+import { validEmail, validName, validPassword, validPhone } from "@/utils/validation";
 
 export const Section4 = () => {
   const [currentID, setCurrentID] = useState("");
@@ -18,6 +18,10 @@ export const Section4 = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [is_Loading, setLoading] = useState(false);
+  const [nameValidation, setNameValidation] = useState('');
+  const [emailValidation, setEmailValidation] = useState('');
+  const [passwordValidation, setPasswordValidation] = useState('');
+  const [phoneValidation, setPhoneValidation] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -33,16 +37,14 @@ export const Section4 = () => {
   }, [router, setCurrentID, setFullName]);
 
   const clickSave = async () => {
-    if (signup_validate(toast, fullName, email, phone, password)) return;
+    setNameValidation(validName(fullName).response);
+    setEmailValidation(validEmail(email).response);
+    setPasswordValidation(validPassword(password).response);
+    setPhoneValidation(validPhone(phone).response);
+    if(validName(fullName).error || validEmail(email).error || validPassword(password).error || validPhone(phone).error)
+      return;
     setLoading(true);
-    await CustomerEditDetails(
-      toast,
-      currentID,
-      fullName,
-      email,
-      password,
-      phone
-    );
+    await CustomerEditDetails(toast, currentID, fullName, email, password, phone);
     setLoading(false);
   };
 
@@ -66,6 +68,7 @@ export const Section4 = () => {
           disabled={false}
           value={fullName}
           setValue={setFullName}
+          validation={nameValidation}
         />
         <TextInput
           type="text"
@@ -74,6 +77,7 @@ export const Section4 = () => {
           disabled={false}
           value={email}
           setValue={setEmail}
+          validation={emailValidation}
         />
         <TextInput
           type="text"
@@ -82,6 +86,7 @@ export const Section4 = () => {
           disabled={false}
           value={phone}
           setValue={setPhone}
+          validation={phoneValidation}
         />
         <TextInput
           type="password"
@@ -90,6 +95,7 @@ export const Section4 = () => {
           disabled={false}
           value={password}
           setValue={setPassword}
+          validation={passwordValidation}
         />
         <div className="md:col-span-2" onClick={clickSave}>
           <OrangeButton text="Save Profile" />

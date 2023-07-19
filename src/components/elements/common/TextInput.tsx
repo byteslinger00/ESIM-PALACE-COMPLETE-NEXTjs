@@ -6,6 +6,7 @@ interface props {
   disabled?: boolean;
   value?: string;
   setValue?: React.Dispatch<React.SetStateAction<string>>;
+  validation?: string;
 }
 
 export const TextInput: React.FC<props> = ({
@@ -15,6 +16,7 @@ export const TextInput: React.FC<props> = ({
   disabled,
   value,
   setValue,
+  validation
 }) => {
   return (
     <div className="flex flex-col gap-3 text-left font-montserrat">
@@ -27,6 +29,7 @@ export const TextInput: React.FC<props> = ({
         value={value}
         onChange={(e)=>{if(setValue) setValue(e.target.value)}}
       />
+      <p className="text-red-500">{validation}</p>
     </div>
   );
 };
