@@ -30,7 +30,7 @@ export const DetailCard: React.FC<props> = ({
 }) => {
   const { is_logged } = useParticipantStore((state) => state);
   return (
-    <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
+    <div className="bg-blue rounded-[20px] text-left text-white md:px-[30px] md:py-[30px] px-[20px] py-[20px] font-montserrat flex flex-col gap-4">
       <div className="flex flex-row">
         <p className="md:text-[23px] text-[18px] font-bold leading-7 grow">
           <div className="flex flex-col">
@@ -138,7 +138,7 @@ export const DetailCard: React.FC<props> = ({
         </div>
       </div>
       <button
-        className="bg-white text-black w-full mt-7 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg disabled:hidden"
+        className="bg-white text-black w-full md:mt-7 mt-0 py-4 px-6 text-center font-semibold text-[16px] leading-5 rounded-lg disabled:hidden"
         onClick={() => showData(id)}
       >
         {currency}

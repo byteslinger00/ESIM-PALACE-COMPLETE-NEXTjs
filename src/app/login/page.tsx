@@ -9,12 +9,15 @@ import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/elements/common/Spinner";
 import { setCookie } from "cookies-next";
 import { SendForgotPassword } from "@/actions/Login/sendForgotPassword";
+import { loginValidation } from "@/utils/validation";
 
 export default function Page() {
   const [id, setID] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [is_Loading, setLoading] = useState(false);
+  const [idvalidation, setIdValidation] = useState('');
+  const [passwordValidation, setPasswordValidation] = useState('');
   const onGoogleBtnClicked = () => {
     signIn("google");
     
@@ -25,6 +28,15 @@ export default function Page() {
   };
 
   const clickLogin = async () => {
+    let res = loginValidation(id, password);
+    if(res.error === true)
+    {
+      setIdValidation(res.response.id);
+      setPasswordValidation(res.response.password);
+      return;
+    }
+    setIdValidation('');
+    setPasswordValidation('');
     setLoading(true);
     let data = await LoginByID(toast, id, password);
     setCookie('user_info', JSON.stringify(data));
@@ -63,15 +75,17 @@ export default function Page() {
               setValue={setID}
               placeholder="User ID"
               type="text"
+              validation={idvalidation}
             />
             <TextInput
               value={password}
               setValue={setPassword}
               placeholder="**** **** **** ****"
               type="password"
+              validation={passwordValidation}
             />
             <div className="md:text-[18px] text-[14px] max-md:text-center">
-              By signing up you agree to Dataesim’s
+              By Logging in you agree to Dataesim’s
               <a href="/privacy" className="font-montserratbold">
                 Terms of Service
               </a>{" "}

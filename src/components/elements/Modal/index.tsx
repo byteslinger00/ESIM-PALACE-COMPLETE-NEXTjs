@@ -1,16 +1,23 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { getCookie } from "cookies-next";
+import { toast } from "react-toastify";
+import { FlagIcon, FlagIconCode } from "react-flag-kit";
+
+import useParticipantStore from "@/store/use-participant";
+
 import { Property } from "../common/Property";
 import { OrangeButton } from "../common/OrangeButton";
 import { Properties } from "./SimProperty";
-import useParticipantStore from "@/store/use-participant";
-import { FlagIcon, FlagIconCode } from "react-flag-kit";
-import { checkFlag } from "@/utils/checkFlag";
 import { SupportedCountries } from "./SimSupportedCountries";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+
+import { checkFlag } from "@/utils/checkFlag";
+import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
 import { checkout } from "@/actions/Stripe/checkout";
-import { toast } from "react-toastify";
+
+
 
 interface props {
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,10 +29,12 @@ export const Modal: React.FC<props> = ({ showModal }) => {
   const router = useRouter();
 
   const handleClickBuy = async () => {
+    const user_info = GetInfoFromCookie(getCookie("user_info"));
     const response = await checkout(
       selected_package?.name || "",
       selected_package?.price || "",
-      selected_package?.package_type_id || 0
+      selected_package?.package_type_id || 0,
+      user_info ? user_info.customer_details.customer_id : ''
     );
     if (response) router.push(response);
     else toast.error("Connection Failed");

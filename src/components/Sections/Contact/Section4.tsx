@@ -1,7 +1,9 @@
 'use client'
 import { OrangeButton } from "@/components/elements/common/OrangeButton";
 import { TextInput } from "@/components/elements/common/TextInput";
-import { useState } from "react";
+import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
+import { getCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 
 export const Section4 = () => {
   const [full_name, setName] = useState('');
@@ -9,6 +11,15 @@ export const Section4 = () => {
   const [phone_number, setPhone] = useState('');
   const [model, setModel] = useState('');
   const [iccid, setIccid] = useState('');
+  useEffect(() => {
+    const user_info = GetInfoFromCookie(getCookie("user_info"));
+    if (user_info === undefined) {
+      return;
+    }
+    setName(user_info.customer_details.full_name);
+    setEmail(user_info.customer_details.customer_id);
+    setPhone(user_info.customer_details.phone_number);
+  }, [])
   return (
     <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 md:py-[135px] py-[40px] text-dark-solid text-center bg-light-solid">
       <h1 className="font-montserrat2xl md:text-[48px] text-[32px] md:mb-[60px] mb-[25px] xl:px-[300px]">Please Complete The Form Below Should You Wish To Get Hold Of Us:</h1>
