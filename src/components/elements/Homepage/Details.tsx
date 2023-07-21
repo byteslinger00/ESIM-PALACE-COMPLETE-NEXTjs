@@ -10,15 +10,17 @@ import { toast } from "react-toastify";
 
 interface props {
   data?: Array<details>;
-  showModal: React.Dispatch<React.SetStateAction<boolean>>;
+  showModal?: any;
   isVisible: boolean;
+  handleBuy?: any;
 }
-export const Details: React.FC<props> = ({ data, showModal, isVisible }) => {
+export const Details: React.FC<props> = ({ data, showModal, isVisible, handleBuy }) => {
   //Store
   const { setSelected_Package } = useParticipantStore((state) => state);
 
   const showData = async (index: number) => {
     if (data !== undefined) {
+      await handleBuy(data[index].package_type_id, data[index].price, data[index].name);
       const is_available = await checkStockById(data[index].package_type_id);
       if(is_available === false)
       {

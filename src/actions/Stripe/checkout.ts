@@ -1,4 +1,4 @@
-export const checkout = async (order: string, price: string, id: number, email: string) => {
+export const checkout = async (order: string, price: string, id: number, email: string, route?: string, iccid?: string) => {
     const response = await fetch(
         "/api/checkout_sessions",
         {
@@ -8,6 +8,9 @@ export const checkout = async (order: string, price: string, id: number, email: 
             "Order": email ? order + " by " + email : order,
             "Price": price,
             "Id": id.toString(),
+            "Route": route === 'topup' ? 'esims': 'transaction',
+            "iccid": iccid || '',
+            "email": email,
           },
           body: JSON.stringify({
           }),

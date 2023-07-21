@@ -13,6 +13,7 @@ interface props {
   customer_id: string;
   handleDetail: any;
   handleTopUp: any;
+  index: number;
 }
 
 export const Card: React.FC<props> = ({
@@ -22,18 +23,19 @@ export const Card: React.FC<props> = ({
   iccid,
   customer_id,
   handleDetail,
-  handleTopUp
+  handleTopUp,
+  index
 }) => {
   const detailHandle = async () => {
     await handleDetail(iccid, customer_id);
   }
 
   const topupHandle = async () => {
-    await handleTopUp(iccid, customer_id);
+    await handleTopUp(index, iccid, customer_id, country_code, country_name);
   }
 
   return (
-    <div className="bg-blue rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
+    <div className="bg-[#909090] rounded-[20px] text-left text-white px-[30px] py-[30px] font-montserrat flex flex-col gap-4">
       <div className="flex flex-row">
         <p className="md:text-[23px] text-[18px] font-bold leading-7 grow">
           {country_name}

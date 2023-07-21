@@ -32,12 +32,12 @@ export const DetailCard: React.FC<props> = ({
   return (
     <div className="bg-blue rounded-[20px] text-left text-white md:px-[30px] md:py-[30px] px-[20px] py-[20px] font-montserrat flex flex-col gap-4">
       <div className="flex flex-row">
-        <p className="md:text-[23px] text-[18px] font-bold leading-7 grow">
+        <div className="md:text-[23px] text-[18px] font-bold leading-7 grow">
           <div className="flex flex-col">
             <p>{country_name}</p>
             <p className="md:text-[18px] text-[14px]">{name_additional_text}</p>
           </div>
-        </p>
+        </div>
         <div className="overflow-hidden w-[38px] h-[38px] rounded-full border-white border-[1px]">
           {checkFlag(country_code) ? (
             <Image
