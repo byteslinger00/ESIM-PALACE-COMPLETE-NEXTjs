@@ -38,7 +38,7 @@ export const Section3 = () => {
             </select>
             <Search onSearch={searchHandler}/>
           </div>
-          {support.titles[selected_index].map((item, index) => item.toLowerCase().indexOf(serach_text) !== -1 ? (
+          {support.titles[selected_index].map((item, index) => item.toLowerCase().indexOf(serach_text.toLowerCase()) !== -1 ? (
             <DropDown
               key={"installation" + index}
               title={item}
