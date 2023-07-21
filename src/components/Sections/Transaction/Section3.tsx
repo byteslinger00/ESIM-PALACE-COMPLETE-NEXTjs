@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import Image from "next/image";
 import QRCode from "react-qr-code";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import {toast} from 'react-toastify'
 
 import { Card } from "@/components/elements/Transaction/Card";
 import { Button } from "@/components/elements/Transaction/Button";
 import { Roaming } from "@/components/elements/Transaction/Roaming";
 import { Reload } from "@/components/elements/Transaction/Reload";
-import { Info } from "@/components/elements/Transaction/Info";
 import { ContactUs } from "@/components/elements/Transaction/ContactUs";
 import { Spinner } from "@/components/elements/common/Spinner";
 import buyEsimById from "@/actions/Packages/buyEsimById";
@@ -24,7 +24,7 @@ export const Section3 = () => {
   const [transactionData, setData] = useState<transaction>();
   const [selected_type, setType] = useState(false);
   const [is_Loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const selected_package = GetInfoFromCookie(getCookie("selected_package"));
 
   useEffect(() => {
@@ -32,6 +32,12 @@ export const Section3 = () => {
       setLoading(true);
       const package_type_id = pathName.split("/")[2];
       const user_info = GetInfoFromCookie(getCookie("user_info"));
+      const buy = getCookie('bought');
+      if(package_type_id !== buy){
+        toast.error("You can't buy this esim");
+        router.push('/')
+        return;
+      }
       const data = await buyEsimById(
         user_info.customer_details.customer_id,
         Number(package_type_id),
@@ -40,7 +46,6 @@ export const Section3 = () => {
       );
       if (data === false) return;
       setData(data);
-
       setLoading(false);
     })();
   }, [pathName]);
