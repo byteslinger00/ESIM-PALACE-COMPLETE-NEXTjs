@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { toast } from "react-toastify";
 import { FlagIcon, FlagIconCode } from "react-flag-kit";
 
@@ -29,6 +29,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
   const router = useRouter();
 
   const handleClickBuy = async () => {
+    setCookie('bought', selected_package?.package_type_id);
     const user_info = GetInfoFromCookie(getCookie("user_info"));
     const response = await checkout(
       selected_package?.name || "",

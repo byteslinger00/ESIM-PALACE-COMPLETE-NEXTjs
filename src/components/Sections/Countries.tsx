@@ -26,6 +26,9 @@ export const Countreis: React.FC<props> = ({
   showModal,
   LoadDetail,
 }) => {
+  const handleBuy = () => {
+
+  }
   return (
     <motion.div
       className="w-full mt-16 !grid xl:!grid-cols-5 !grid-cols-2 grid-container"
@@ -56,6 +59,7 @@ export const Countreis: React.FC<props> = ({
           data={details}
           showModal={showModal}
           isVisible={detailsVisible}
+          handleBuy={handleBuy}
         />
       </div>
       <div
@@ -67,6 +71,7 @@ export const Countreis: React.FC<props> = ({
           data={details}
           showModal={showModal}
           isVisible={detailsVisible}
+          handleBuy={handleBuy}
         />
       </div>
     </motion.div>
