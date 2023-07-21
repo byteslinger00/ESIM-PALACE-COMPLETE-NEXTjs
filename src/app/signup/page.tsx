@@ -78,7 +78,7 @@ export default function Page() {
             />
 
             <div className="md:text-[18px] text-[14px] max-md:text-center">
-              By signing up you agree to Dataesim’s{" "}
+              By signing up you agree to eSim Palace&apos;s{" "}
               <a href="/privacy" className="font-montserratbold">
                 Terms of Service
               </a>{" "}
@@ -94,13 +94,6 @@ export default function Page() {
             >
               <p className="md:leading-[13px] leading-[11px]">Sign Up</p>
             </button>
-            <p className="md:text-[18px] text-[14px] max-md:mx-auto">
-              Or Sign Up Using
-            </p>
-            {/* <div className="flex flex-row gap-4 max-md:mx-auto">
-              <Logo type="Apple" />
-              <Logo type="Google" />
-            </div> */}
             <hr className="border-[#DDDDDD]" />
             <div className="md:text-[18px] text-[14px] max-md:text-center">
               Already have an account?
