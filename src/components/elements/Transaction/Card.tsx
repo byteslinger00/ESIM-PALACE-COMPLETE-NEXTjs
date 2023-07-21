@@ -46,13 +46,6 @@ export const Card: React.FC<props> = ({
         <p className="font-montserratbold grow">Subtotal</p>
         <p className="font-montserratbold">${subtotal}</p>
       </div>
-      <hr className="border-[#E1E1E1]" />
-      <div className="flex flex-row">
-        <p className="font-montserratbold grow">Total</p>
-        <p className="font-montserratbold">
-          ${subtotal - discount < 0 ? 0 : subtotal }
-        </p>
-      </div>
     </div>
   );
 };

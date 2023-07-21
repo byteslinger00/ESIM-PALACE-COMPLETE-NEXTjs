@@ -98,6 +98,18 @@ p {
   grid-gap: 30px;
 }
 
+.grid-containerB {
+  display: grid;
+  grid-template:
+    ". . . . ."
+    "A1 A1 A1 A1 A1"
+    "A2 A2 A2 A2 A2"
+    "A3 A3 A3 A3 A3"
+    ;
+
+  grid-gap: 30px;
+}
+
 .grid-item {
   grid-column-end: span 5;
 }
@@ -197,6 +209,21 @@ p {
       "B10 B10";
     grid-gap: 30px;
   }
+
+  .grid-containerB {
+    display: grid;
+    grid-template:
+      ". ."
+      "B1 B1"
+      "B2 B2"
+      "B3 B3"
+      "B4 B4"
+      "B5 B5"
+      "B6 B6"
+      "B7 B7";
+    grid-gap: 30px;
+  }
+
 
   .grid-item {
     grid-column-end: span 1;
