@@ -15,7 +15,7 @@ export const DropDown: React.FC<props> = ({ title, description, visible }) => {
       <div className="flex flex-row">
         <h6 className="font-montserratbold grow">{title}</h6>
         <Image
-          src="/assets/Support page/Icons/Arrow down sign to navigate.svg"
+          src="/assets/Support Page/Icons/Arrow down sign to navigate.svg"
           width={24}
           height={24}
           alt="Arrow Down"

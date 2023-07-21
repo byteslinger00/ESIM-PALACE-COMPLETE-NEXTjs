@@ -14,6 +14,10 @@ export const Search:React.FC<props> = ({onSearch}) => {
                 className="px-3 outline-none grow text-[18px] text-dark-solid placeholder:text-dark-solid max-md:hidden bg-[#FFF8E7] font-montserrat"
                 value={text}
                 onChange={e => setText(e.target.value)}
+                onKeyDown={(e) => {
+                    if(e.key === 'Enter')
+                      onSearch(text);
+                  }}
             />
             <button className='my-auto bg-primary-solid xl:w-12 xl:h-12 w-[30px] h-[30px] rounded-lg' onClick={() => onSearch(text)}>
                 <Image
