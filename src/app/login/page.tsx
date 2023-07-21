@@ -68,7 +68,7 @@ export default function Page() {
         <div>
           <div className="md:w-[630px] w-full md:p-[50px] md:gap-5 gap-4 bg-white xl:float-right mx-auto md:big-shadow rounded-[32px] flex flex-col font-montserrat">
             <h1 className="md:text-[48px] text-[30px] font-montserrat2xl text-center mb-[10px]">
-              Log In
+              Login
             </h1>
             <TextInput
               value={id}
@@ -85,7 +85,7 @@ export default function Page() {
               validation={passwordValidation}
             />
             <div className="md:text-[18px] text-[14px] max-md:text-center">
-              By Logging in you agree to Dataesim’s
+              By Logging in you agree to eSim Palace&apos;s{" "}
               <a href="/privacy" className="font-montserratbold">
                 Terms of Service
               </a>{" "}
@@ -102,18 +102,7 @@ export default function Page() {
               <p className="md:leading-[13px] leading-[11px]">Log In</p>
             </button>
             <button className="underline text-left cursor-pointer w-[200px]" onClick={clickForgotPassword}>Forgot password?</button>
-            <hr/>
-            <p className="md:text-[18px] text-[14px] max-md:mx-auto">
-              Or Sign In Using
-            </p>
-            <div className="flex flex-row gap-4 max-md:mx-auto">
-              <button onClick={onAppleBtnClicked}>
-                <Logo type="Apple" />
-              </button>
-              <button onClick={onGoogleBtnClicked}>
-                <Logo type="Google" />
-              </button>
-            </div>
+            
             <hr className="border-[#DDDDDD]" />
           </div>
         </div>

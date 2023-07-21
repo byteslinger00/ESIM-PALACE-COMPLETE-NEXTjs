@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import {toast} from 'react-toastify'
 interface props {
   handleSearch: any;
 }
@@ -8,6 +9,11 @@ interface props {
 export const Search: React.FC<props> = ({ handleSearch }) => {
   const [searchvalue, setValue] = useState("");
   const searchHandler = () => {
+    if(searchvalue.length < 3)
+    {
+      toast.error("You must enter 3 characters!");
+      return;
+    }
     handleSearch(searchvalue);
   };
   return (
@@ -22,7 +28,7 @@ export const Search: React.FC<props> = ({ handleSearch }) => {
         }}
         onKeyDown={(e) => {
           if(e.key === 'Enter')
-            handleSearch(searchvalue)
+            searchHandler();
         }}
       />
       <button
