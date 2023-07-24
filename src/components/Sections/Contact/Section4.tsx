@@ -2,6 +2,7 @@
 import sendEmail from "@/actions/Contact/sendEmail";
 // import { sendMessage } from "@/actions/Contact/sendEmail";
 import { OrangeButton } from "@/components/elements/common/OrangeButton";
+import { Spinner } from "@/components/elements/common/Spinner";
 import { TextInput } from "@/components/elements/common/TextInput";
 import { GetInfoFromCookie } from "@/utils/GetInfoFromCookie";
 import { validEmail, validName } from "@/utils/validation";
@@ -16,8 +17,9 @@ export const Section4 = () => {
   const [model, setModel] = useState("");
   const [iccid, setIccid] = useState("");
   const [message, setMessage] = useState("");
-  const [nameValidation, setNameValidation] = useState('');
-  const [emailValidation, setEmailValidation] = useState('');
+  const [nameValidation, setNameValidation] = useState("");
+  const [emailValidation, setEmailValidation] = useState("");
+  const [is_Loading, setLoading] = useState(false);
 
   useEffect(() => {
     const user_info = GetInfoFromCookie(getCookie("user_info"));
@@ -30,35 +32,38 @@ export const Section4 = () => {
   }, []);
 
   const sendMessageHandler = async () => {
+    setLoading(true);
     setNameValidation(validName(full_name).response);
     setEmailValidation(validEmail(email).response);
-    if(validName(full_name).error || validEmail(email).error)
+    if (validName(full_name).error || validEmail(email).error) {
+      setLoading(false);
       return;
+    }
+    const res = await sendEmail(
+      email,
+      full_name,
+      phone_number,
+      model,
+      iccid,
+      message
+    );
     if (
-      (await sendEmail(
-        email,
-        full_name,
-        phone_number,
-        model,
-        iccid,
-        message
-      )) === true
+      res === true
     ) {
       toast.success("Message sent successfully!");
-      setName("");
-      setEmail("");
-      setPhone("");
       setModel("");
       setIccid("");
       setMessage("");
     }
+    setLoading(false);
   };
 
   return (
-    <section className="mi-medium:px-[300px] 2xl:px-[100px] px-6 md:py-[135px] py-[40px] text-dark-solid text-center bg-light-solid">
+    <section className="relative mi-medium:px-[300px] 2xl:px-[100px] px-6 md:py-[135px] py-[40px] text-dark-solid text-center bg-light-solid">
       <h1 className="font-montserrat2xl md:text-[48px] text-[32px] md:mb-[60px] mb-[25px] xl:px-[300px]">
         Please Complete The Form Below Should You Wish To Get Hold Of Us:
       </h1>
+      {is_Loading ? <Spinner /> : ""}
       <div className="bg-white lg:rounded-[32px] rounded-[10px] grid md:grid-cols-2 grid-cols-1 lg:gap-[30px] gap-[15px] lg:px-20 lg:py-20 px-5 py-5">
         <TextInput
           type="text"
