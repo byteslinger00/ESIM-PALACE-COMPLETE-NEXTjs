@@ -35,7 +35,7 @@ export const DetailCard: React.FC<props> = ({
         <div className="md:text-[23px] text-[18px] font-bold leading-7 grow">
           <div className="flex flex-col">
             <p>{country_name}</p>
-            <p className="md:text-[18px] text-[14px]">{name_additional_text}</p>
+            <p className="md:text-[18px] text-[14px] h-7">{name_additional_text}</p>
           </div>
         </div>
         <div className="overflow-hidden w-[38px] h-[38px] rounded-full border-white border-[1px]">

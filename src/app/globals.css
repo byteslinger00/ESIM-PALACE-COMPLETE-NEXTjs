@@ -155,6 +155,10 @@ p {
 
 }
 
+.smallflag {
+  display: inline !important;
+}
+
 @keyframes Overlay--motion-slideInLeft {
   0% {
     transform: translateX(100%);

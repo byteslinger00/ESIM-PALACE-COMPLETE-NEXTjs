@@ -5,7 +5,7 @@ export const checkout = async (order: string, price: string, id: number, email: 
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Order": email ? order + " by " + email : order,
+            "Order": order,
             "Price": price,
             "Id": id.toString(),
             "Route": route === 'topup' ? 'esims': 'transaction',

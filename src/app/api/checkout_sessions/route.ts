@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
         ? `${req.headers.get('origin')}/${req.headers.get('Route')}/${req.headers.get('Id')}`
         : `${req.headers.get('origin')}/esims?success=true&id=${req.headers.get('email')}&type=${req.headers.get('Id')}&iccid=${req.headers.get('iccid')}`,
       cancel_url: `${req.headers.get('origin')}/?canceled=true`,
+      customer_email: req.headers.get('email') || undefined,
     });
     const response = new NextResponse(null, { status: 200 });
     response.headers.set('Location', session.url);
