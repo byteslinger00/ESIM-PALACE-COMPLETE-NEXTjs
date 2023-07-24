@@ -28,7 +28,7 @@ const sendEmail = async (from: string, to: string, subject: string, text: string
 };
 
 const sendMessage = async (from: string, subject: string, text: string, model: string, phone: string, iccid: string) => {
-  const to = 'sandbox@esimplified.io';
+  const to = 'support@esimplified.io';
   const message = `${model? 'Device Model:'+model+'\n': ''}${phone? 'Phone Number: '+phone+ '\n': ''}${iccid? 'ICCID: '+iccid+'\n': ''}${text}`;
   return await sendEmail(from, to, subject, message);
 };
