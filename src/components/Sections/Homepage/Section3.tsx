@@ -72,7 +72,7 @@ export const Section3:React.FC<props> = ({title,search, is_search}) => {
   };
 
   return (
-    <section className={`relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 pt-[135px] ${is_search? 'bg-white' : 'bg-[#F9F7F7]'}  text-dark-solid text-center ${is_search? '!px-0' : ''} ${is_search? '!py-0' : ''}`}>
+    <section className={`relative mi-medium:px-[300px] 2xl:px-[100px] max-xl:px-[100px] max-sm:px-6 pt-[135px] ${is_search? 'bg-white' : 'bg-[#F9F7F7]'}  text-dark-solid text-center ${is_search? '!px-5' : ''} ${is_search? '!py-5' : ''}`}>
       <div className="flex flex-row">
         <p className="font-montserrat2xl xl:text-[48px] text-[32px] max-xl:mx-auto">
           {title}

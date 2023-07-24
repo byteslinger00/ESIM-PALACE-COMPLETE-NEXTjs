@@ -19,12 +19,12 @@ export const Section2: React.FC<props> = ({
   searchValue,
 }) => {
   return (
-    <section className="xl:px-[300px] px-5 pt-[80px] text-dark-solid text-center">
+    <section className="text-dark-solid text-center">
       {on_search ? (
         <Section3 title="Search" search={searchValue} is_search={true}/>
       ) : (
         <div>
-          <p className="font-montserrat2xl sm:text-[48px] text-[32px] sm:w-[70%] w-full mx-auto max-w-[800px]">
+          <p className="mt-[80px] font-montserrat2xl sm:text-[48px] text-[32px] sm:w-[70%] w-full mx-auto max-w-[800px]">
             {heading}
           </p>
           <p className="sm:w-[70%] sm:text-[20px] text-[16px] w-full max-w-[800px] mx-auto mb-[40px]">

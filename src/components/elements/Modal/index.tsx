@@ -47,7 +47,7 @@ export const Modal: React.FC<props> = ({ showModal }) => {
           className="bg-[#0E2C40B8] w-full h-full top-0 left-0 z-[10] overscroll-contain block absolute"
           onClick={() => showModal(false)}
         ></div>
-        <div className="relative 2xl:w-[60%] xl:w-[80%] w-[90%] xl:px-[60px] xl:py-20 p-10 bg-white rounded-[32px] z-[100] flex md:flex-row flex-col font-montserrat xl:gap-[85px] gap-[30px] text-left position-center">
+        <div className="relative xl:w-[80%] w-[90%] xl:px-[60px] xl:py-20 p-5 bg-white rounded-[32px] z-[100] flex md:flex-row flex-col font-montserrat xl:gap-[85px] gap-[30px] text-left position-center">
           <Image
             src="/assets/Packages page/Icons/Close.svg"
             width={26}
@@ -128,11 +128,12 @@ export const Modal: React.FC<props> = ({ showModal }) => {
                 text={selected_package.activation_policy}
               />
               <Properties
-                title="KYC_Display"
+                title="KYC"
                 text={selected_package.kyc_display}
               />
               <SupportedCountries
                 countries={selected_package.supported_countries}
+                country_name={selected_package.country_name}
               />
             </div>
           </div>
