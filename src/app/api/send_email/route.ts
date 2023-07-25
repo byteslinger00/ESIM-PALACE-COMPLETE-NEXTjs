@@ -23,6 +23,7 @@ const sendEmail = async (from: string, to: string, subject: string, text: string
     const info = await transporter.sendMail(message);
     return(`Message sent: ${info.messageId}`);
   } catch (error) {
+    console.log(error);
     return(`Error sending email: ${error}`);
   }
 };
@@ -30,7 +31,7 @@ const sendEmail = async (from: string, to: string, subject: string, text: string
 const sendMessage = async (from: string, subject: string, text: string, model: string, phone: string, iccid: string) => {
   const to = 'support@esimplified.io';
   const message = `${model? 'Device Model:'+model+'\n': ''}${phone? 'Phone Number: '+phone+ '\n': ''}${iccid? 'ICCID: '+iccid+'\n': ''}${text}`;
-  return await sendEmail(from, to, subject, message);
+    return await sendEmail(from, to, subject, message);
 };
 
 export async function POST(req: NextRequest) {  
